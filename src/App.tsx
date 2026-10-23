@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useCommerceWorkflow } from "@criation/ui";
 import { Navigation } from "./components/Navigation";
 import { Storefront } from "./views/Storefront";
 import { OrdersView } from "./components/OrdersView";
@@ -8,132 +9,81 @@ import { OrderReceiptModal } from "./components/OrderReceiptModal";
 import { AuthModal } from "./components/AuthModal";
 import { cloudDb } from "./database/cloudDb";
 import { authService } from "./services/authService";
-import type { CartItem, Product, Order, PaymentTransaction, User } from "./database/types";
+import type { CartItem, Product, Order, User } from "./database/types";
 
 export function App() {
-  const [currentUser, setCurrentUser] = useState<User | null>(() => authService.getCurrentUser());
   const [products] = useState<Product[]>(() => cloudDb.getProducts());
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+
+  // Initial cart from storage
+  const initialCart: CartItem[] = (() => {
     try {
       const saved = localStorage.getItem("criation_cloud_cart");
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
     }
+  })();
+
+  /**
+   * ⚡ Criation UI — Natural Language Workflow Engine
+   * 
+   * Replaces 60+ lines of manual React event handlers with plain-English rules:
+   * - "When the user changes a product's quantity: update matching item; remove if zero"
+   * - "When the user removes a product from the cart: remove matching product"
+   * - "When the user proceeds to checkout: close cart; prompt login if needed; else open checkout"
+   * - "When authentication succeeds: store user, load orders, resume checkout"
+   * - "When the user logs out: logout service, clear state, return to store"
+   * - "When payment succeeds: close checkout, clear cart, display receipt, refresh orders"
+   */
+  const {
+    cartItems,
+    currentUser,
+    orders,
+    currentView,
+    cartCount,
+    isCartOpen,
+    isAuthOpen,
+    isCheckoutOpen,
+    isReceiptOpen,
+    activeReceiptOrder,
+    activeReceiptTxn,
+    addToCart,
+    updateQuantity,
+    removeFromCart,
+    proceedToCheckout,
+    handleAuthSuccess,
+    handleLogout,
+    handlePaymentSuccess,
+    openCart,
+    closeCart,
+    openAuth,
+    closeAuth,
+    closeCheckout,
+    closeReceipt,
+    viewReceipt,
+    navigateTo,
+  } = useCommerceWorkflow<Product, User, Order>({
+    initialCart,
+    initialUser: authService.getCurrentUser(),
+    loadOrders: (userId) => cloudDb.getOrders(userId),
+    onLogoutService: () => authService.logout(),
   });
-
-  const [orders, setOrders] = useState<Order[]>(() => cloudDb.getOrders(currentUser?.id));
-  const [currentView, setCurrentView] = useState<"store" | "orders">("store");
-
-  // Modals state
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [isReceiptOpen, setIsReceiptOpen] = useState(false);
-  const [activeReceiptOrder, setActiveReceiptOrder] = useState<Order | null>(null);
-  const [activeReceiptTxn, setActiveReceiptTxn] = useState<PaymentTransaction | null>(null);
 
   // Synchronize cart changes to local storage
   useEffect(() => {
     localStorage.setItem("criation_cloud_cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Synchronize database updates across browser tabs
-  useEffect(() => {
-    const unsubscribe = cloudDb.onSync((type, data) => {
-      if (type === "SESSION_CHANGE") {
-        setCurrentUser(data);
-      } else if (type === "ORDER_CREATED") {
-        setOrders(cloudDb.getOrders(currentUser?.id));
-      }
-    });
-    return unsubscribe;
-  }, [currentUser?.id]);
-
-  // Cart operations
-  const handleAddToCart = (product: Product) => {
-    setCartItems((prev) => {
-      const idx = prev.findIndex((item) => item.product.id === product.id);
-      if (idx !== -1) {
-        const next = [...prev];
-        next[idx] = { ...next[idx], quantity: next[idx].quantity + 1 };
-        return next;
-      }
-      return [...prev, { product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
-
-  const handleUpdateQuantity = (productId: string, delta: number) => {
-    setCartItems((prev) => {
-      return prev
-        .map((item) => {
-          if (item.product.id === productId) {
-            const newQ = item.quantity + delta;
-            return newQ > 0 ? { ...item, quantity: newQ } : null;
-          }
-          return item;
-        })
-        .filter(Boolean) as CartItem[];
-    });
-  };
-
-  const handleRemoveFromCart = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
-  };
-
-  // Checkout flow
-  const handleProceedToCheckout = () => {
-    setIsCartOpen(false);
-    if (!currentUser) {
-      setIsAuthOpen(true);
-    } else {
-      setIsCheckoutOpen(true);
-    }
-  };
-
-  const handleAuthSuccess = (user: User) => {
-    setCurrentUser(user);
-    setOrders(cloudDb.getOrders(user.id));
-    if (cartItems.length > 0) {
-      setIsCheckoutOpen(true);
-    }
-  };
-
-  const handleLogout = () => {
-    authService.logout();
-    setCurrentUser(null);
-    setOrders([]);
-    setCurrentView("store");
-  };
-
-  const handlePaymentSuccess = (result: any) => {
-    setIsCheckoutOpen(false);
-    setCartItems([]);
-    if (result.order) {
-      setActiveReceiptOrder(result.order);
-      setActiveReceiptTxn(result.transaction);
-      setIsReceiptOpen(true);
-      setOrders(cloudDb.getOrders(currentUser?.id));
-    }
-  };
-
-  const handleViewReceipt = (order: Order) => {
-    setActiveReceiptOrder(order);
-    setActiveReceiptTxn(null);
-    setIsReceiptOpen(true);
-  };
-
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#0b0f19", color: "#f8fafc" }}>
       <Navigation
         currentUser={currentUser}
-        cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-        onOpenCart={() => setIsCartOpen(true)}
-        onOpenAuth={() => setIsAuthOpen(true)}
+        cartCount={cartCount}
+        onOpenCart={openCart}
+        onOpenAuth={openAuth}
         onLogout={handleLogout}
-        onViewOrders={() => setCurrentView("orders")}
-        onViewStore={() => setCurrentView("store")}
+        onViewOrders={() => navigateTo("orders")}
+        onViewStore={() => navigateTo("store")}
         currentView={currentView}
       />
 
@@ -142,14 +92,14 @@ export function App() {
           <Storefront
             products={products}
             cartItems={cartItems}
-            onAddToCart={handleAddToCart}
+            onAddToCart={addToCart}
             onExploreFeatures={() => {}}
           />
         ) : (
           <OrdersView
             orders={orders}
-            onViewReceipt={handleViewReceipt}
-            onBrowseStore={() => setCurrentView("store")}
+            onViewReceipt={viewReceipt}
+            onBrowseStore={() => navigateTo("store")}
           />
         )}
       </main>
@@ -157,17 +107,17 @@ export function App() {
       {/* Cart Drawer */}
       <CartDrawer
         isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
+        onClose={closeCart}
         items={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveFromCart}
-        onProceedToCheckout={handleProceedToCheckout}
+        onUpdateQuantity={updateQuantity}
+        onRemoveItem={removeFromCart}
+        onProceedToCheckout={proceedToCheckout}
       />
 
       {/* Auth Modal */}
       <AuthModal
         isOpen={isAuthOpen}
-        onClose={() => setIsAuthOpen(false)}
+        onClose={closeAuth}
         onSuccess={handleAuthSuccess}
       />
 
@@ -175,7 +125,7 @@ export function App() {
       {currentUser && (
         <CheckoutModal
           isOpen={isCheckoutOpen}
-          onClose={() => setIsCheckoutOpen(false)}
+          onClose={closeCheckout}
           items={cartItems}
           currentUser={currentUser}
           onPaymentSuccess={handlePaymentSuccess}
@@ -185,7 +135,7 @@ export function App() {
       {/* Order Receipt Modal */}
       <OrderReceiptModal
         isOpen={isReceiptOpen}
-        onClose={() => setIsReceiptOpen(false)}
+        onClose={closeReceipt}
         order={activeReceiptOrder}
         transaction={activeReceiptTxn}
       />

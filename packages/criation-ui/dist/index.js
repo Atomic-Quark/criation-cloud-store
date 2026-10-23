@@ -2,17 +2,17 @@
 var fr = Object.defineProperty;
 var pr = (e, r, t) => r in e ? fr(e, r, { enumerable: !0, configurable: !0, writable: !0, value: t }) : e[r] = t;
 var le = (e, r, t) => pr(e, typeof r != "symbol" ? r + "" : r, t);
-import { U as hr, p as gr, a as yr, f as br, g as vr, s as st, r as $e, q as ot, o as Ae, n as ct, m as Ie, d as xr, e as wr, l as lt, k as Te, j as dt, i as Le, c as N, h as F, t as Nr } from "./shorthand-Bjjv6Cn9.js";
-import { D as Bi, u as Oi, P as Pi, S as Wi, T as ji, v as Fi, w as Hi, x as Vi, y as qi, z as Ui, A as Gi, B as Ki, C as Ji, E as Qi, F as Yi, G as Zi, H as Xi, b as es, I as ts, J as rs, K as ns, L as as, M as is, N as ss, O as os, Q as cs, R as ls, V as ds, W as us, X as ms, Y as fs, Z as ps } from "./shorthand-Bjjv6Cn9.js";
+import { U as hr, p as gr, a as yr, f as br, g as vr, s as st, r as $e, q as ot, o as Ae, n as ct, m as Ie, d as xr, e as wr, l as lt, k as Te, j as dt, i as Le, c as k, h as j, t as kr } from "./shorthand-Bjjv6Cn9.js";
+import { D as Bi, u as Oi, P as Pi, S as Wi, T as Fi, v as ji, w as Hi, x as Vi, y as qi, z as Ui, A as Gi, B as Ki, C as Ji, E as Qi, F as Yi, G as Zi, H as Xi, b as es, I as ts, J as rs, K as ns, L as as, M as is, N as ss, O as os, Q as cs, R as ls, V as ds, W as us, X as ms, Y as fs, Z as ps } from "./shorthand-Bjjv6Cn9.js";
 import { jsx as i, jsxs as m, Fragment as X } from "react/jsx-runtime";
-import E, { useState as _, useEffect as B, useCallback as P, useRef as D, forwardRef as A, useImperativeHandle as kr, Component as _r, useMemo as rt, useContext as ut, createContext as mt } from "react";
+import E, { useState as _, useEffect as B, useCallback as P, useRef as D, forwardRef as A, useImperativeHandle as Nr, Component as _r, useMemo as rt, useContext as ut, createContext as mt } from "react";
 import { c as W, C as ft, X as ze, a as Cr, T as Sr, I as Er, N as $r, B as pt } from "./builder-BbLA8DCE.js";
-import { b as gs, d as ys, e as bs, F as vs, G as xs, S as ws, f as Ns, g as ks, W as _s, h as Cs, i as Ss, m as Es, r as $s, u as As, j as Is, k as Ts } from "./builder-BbLA8DCE.js";
+import { b as gs, d as ys, e as bs, F as vs, G as xs, S as ws, f as ks, g as Ns, W as _s, h as Cs, i as Ss, m as Es, r as $s, u as As, j as Is, k as Ts } from "./builder-BbLA8DCE.js";
 import { Button as ht, BaseButton as Y } from "./button.js";
 import { Input as pe, BaseInput as gt } from "./input.js";
 import { Card as yt, BaseCard as Ar } from "./card.js";
 import { createPortal as Me } from "react-dom";
-import { u as zs, a as Ms } from "./createCrudWorkflow-BeKGVcvP.js";
+import { F as zs, c as Ms, p as Rs, u as Ds, a as Bs, b as Os, w as Ps } from "./workflowBuilder-EbnoUfD4.js";
 /**
  * @license lucide-react v1.60.0 - ISC
  *
@@ -75,20 +75,20 @@ const wt = {
   node: [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]]
 };
 wt.node;
-const Nt = W(wt);
+const kt = W(wt);
 /**
  * @license lucide-react v1.60.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const kt = {
+const Nt = {
   name: "chevron-down",
   size: 24,
   node: [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]]
 };
-kt.node;
-const _t = W(kt);
+Nt.node;
+const _t = W(Nt);
 /**
  * @license lucide-react v1.60.0 - ISC
  *
@@ -295,7 +295,7 @@ const Bt = {
   aliases: ["edit-2"]
 };
 Bt.node;
-const jr = W(Bt);
+const Fr = W(Bt);
 /**
  * @license lucide-react v1.60.0 - ISC
  *
@@ -311,7 +311,7 @@ const Ot = {
   ]
 };
 Ot.node;
-const Fr = W(Ot);
+const jr = W(Ot);
 /**
  * @license lucide-react v1.60.0 - ISC
  *
@@ -352,7 +352,7 @@ const Vr = W(Wt);
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const jt = {
+const Ft = {
   name: "trash",
   size: 24,
   node: [
@@ -364,15 +364,15 @@ const jt = {
   ],
   aliases: ["trash-2"]
 };
-jt.node;
-const qr = W(jt);
+Ft.node;
+const qr = W(Ft);
 /**
  * @license lucide-react v1.60.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Ft = {
+const jt = {
   name: "user",
   size: 24,
   node: [
@@ -380,8 +380,8 @@ const Ft = {
     ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
   ]
 };
-Ft.node;
-const Ur = W(Ft), ha = {
+jt.node;
+const Ur = W(jt), ha = {
   Button: {
     name: "Button",
     category: "buttons",
@@ -657,7 +657,7 @@ const xa = {
   // 80px
   24: "6rem"
   // 96px
-}, Na = {
+}, ka = {
   fonts: {
     sans: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     heading: "Outfit, Inter, -apple-system, BlinkMacSystemFont, sans-serif",
@@ -705,7 +705,7 @@ const xa = {
     wide: "0.025em",
     wider: "0.05em"
   }
-}, ka = {
+}, Na = {
   buttonHeights: {
     xs: "1.75rem",
     // 28px
@@ -1029,7 +1029,7 @@ function Wa(e, r, t) {
     };
   }, [e, t]);
 }
-function ja(e) {
+function Fa(e) {
   const [r, t] = _(!1);
   return B(() => {
     if (typeof window > "u") return;
@@ -1043,7 +1043,7 @@ function ja(e) {
     };
   }, [e]), r;
 }
-function Fa(e, r, t = "en-US") {
+function ja(e, r, t = "en-US") {
   const n = typeof e == "object" ? e : new Date(e);
   if (isNaN(n.getTime())) return "";
   const a = {
@@ -1119,7 +1119,7 @@ const Qr = A(
     {
       ref: s,
       "aria-label": r,
-      className: N("cr-icon-button", t && "cr-icon-button--round", n),
+      className: k("cr-icon-button", t && "cr-icon-button--round", n),
       ...a,
       children: /* @__PURE__ */ i("span", { className: "cr-icon-button__inner", children: e })
     }
@@ -1128,7 +1128,7 @@ const Qr = A(
 Qr.displayName = "IconButton";
 const Yr = A(
   ({ size: e, variant: r, attached: t = !1, vertical: n = !1, className: a = "", children: s, ...o }, c) => {
-    const l = N(
+    const l = k(
       "cr-button-group",
       t && "cr-button-group--attached",
       n && "cr-button-group--vertical",
@@ -1216,12 +1216,12 @@ const Ut = A(
     B(() => {
       x();
     }, [t, l.value, l.defaultValue]);
-    const k = (y) => {
+    const N = (y) => {
       x(), c == null || c(y);
     }, f = /* @__PURE__ */ i(
       "div",
       {
-        className: N(
+        className: k(
           "cr-textarea-wrapper",
           `cr-textarea-wrapper--${e}`,
           p && "has-error",
@@ -1240,7 +1240,7 @@ const Ut = A(
             className: "cr-textarea",
             "aria-invalid": p,
             "aria-describedby": u && g ? g : l["aria-describedby"],
-            onInput: k,
+            onInput: N,
             ...l
           }
         )
@@ -1267,7 +1267,7 @@ const Gt = A(
     const d = !!n, p = typeof n == "string" ? n : void 0, u = c.id ? `${c.id}-error` : void 0, v = c.value === void 0 ? c.defaultValue !== void 0 ? c.defaultValue : t ? "" : void 0 : void 0, g = /* @__PURE__ */ m(
       "div",
       {
-        className: N(
+        className: k(
           "cr-select-wrapper",
           `cr-select-wrapper--${e}`,
           d && "has-error",
@@ -1306,7 +1306,7 @@ const rn = A(
   ({ size: e = "md", label: r, description: t, error: n, disabled: a, className: s = "", checked: o, ...c }, l) => /* @__PURE__ */ m(
     "label",
     {
-      className: N(
+      className: k(
         "cr-checkbox-label",
         `cr-checkbox--${e}`,
         a && "is-disabled",
@@ -1326,7 +1326,7 @@ const rn = A(
               ...c
             }
           ),
-          /* @__PURE__ */ i("span", { className: "cr-checkbox__indicator", children: /* @__PURE__ */ i(Nt, { className: "cr-checkbox__check-icon", size: 14, strokeWidth: 3 }) })
+          /* @__PURE__ */ i("span", { className: "cr-checkbox__indicator", children: /* @__PURE__ */ i(kt, { className: "cr-checkbox__check-icon", size: 14, strokeWidth: 3 }) })
         ] }),
         (r || t) && /* @__PURE__ */ m("span", { className: "cr-checkbox__text-wrapper", children: [
           r && /* @__PURE__ */ i("span", { className: "cr-checkbox__label-text", children: r }),
@@ -1341,7 +1341,7 @@ const nn = A(
   ({ size: e = "md", label: r, description: t, error: n, disabled: a, className: s = "", checked: o, ...c }, l) => /* @__PURE__ */ m(
     "label",
     {
-      className: N(
+      className: k(
         "cr-radio-label",
         `cr-radio--${e}`,
         a && "is-disabled",
@@ -1376,7 +1376,7 @@ const an = A(
   ({ size: e = "md", label: r, description: t, disabled: n, className: a = "", checked: s, ...o }, c) => /* @__PURE__ */ m(
     "label",
     {
-      className: N(
+      className: k(
         "cr-switch-label",
         `cr-switch--${e}`,
         n && "is-disabled",
@@ -1408,7 +1408,7 @@ const an = A(
 );
 an.displayName = "Switch";
 const sn = A(
-  ({ size: e = "md", min: r = 0, max: t = 100, step: n = 1, showValue: a = !1, value: s, disabled: o, className: c = "", ...l }, d) => /* @__PURE__ */ m("div", { className: N("cr-slider-container", `cr-slider--${e}`, o && "is-disabled", c), children: [
+  ({ size: e = "md", min: r = 0, max: t = 100, step: n = 1, showValue: a = !1, value: s, disabled: o, className: c = "", ...l }, d) => /* @__PURE__ */ m("div", { className: k("cr-slider-container", `cr-slider--${e}`, o && "is-disabled", c), children: [
     /* @__PURE__ */ i(
       "input",
       {
@@ -1455,7 +1455,7 @@ const cn = A(
       y.preventDefault(), a || d(!0);
     }, x = (y) => {
       y.preventDefault(), d(!1);
-    }, k = (y) => {
+    }, N = (y) => {
       y.preventDefault(), d(!1), !a && y.dataTransfer.files && y.dataTransfer.files.length > 0 && (u(y.dataTransfer.files[0].name), n == null || n(y.dataTransfer.files));
     }, f = (y) => {
       var h;
@@ -1464,7 +1464,7 @@ const cn = A(
     return /* @__PURE__ */ m(
       "div",
       {
-        className: N(
+        className: k(
           "cr-file-upload",
           l && "is-dragging",
           a && "is-disabled",
@@ -1473,7 +1473,7 @@ const cn = A(
         ),
         onDragOver: g,
         onDragLeave: x,
-        onDrop: k,
+        onDrop: N,
         onClick: () => {
           var y;
           return (y = v.current) == null ? void 0 : y.click();
@@ -1520,16 +1520,16 @@ const De = A(
     disabled: v,
     ...g
   }, x) => {
-    const k = p !== void 0, [f, y] = _(String(u || "")), h = k ? String(p) : f, b = D(null);
-    kr(x, () => b.current);
+    const N = p !== void 0, [f, y] = _(String(u || "")), h = N ? String(p) : f, b = D(null);
+    Nr(x, () => b.current);
     const w = D(null), $ = (C) => {
       const R = C.target.value;
-      k || y(R), a == null || a(R, C), n && (w.current && clearTimeout(w.current), w.current = setTimeout(() => {
+      N || y(R), a == null || a(R, C), n && (w.current && clearTimeout(w.current), w.current = setTimeout(() => {
         n(R);
       }, t));
     }, I = () => {
       var C;
-      k || y(""), s == null || s(), n == null || n(""), (C = b.current) == null || C.focus();
+      N || y(""), s == null || s(), n == null || n(""), (C = b.current) == null || C.focus();
     }, M = (C) => {
       C.key === "Escape" ? I() : C.key === "Enter" && (w.current && clearTimeout(w.current), n == null || n(h));
     }, S = {
@@ -1548,7 +1548,7 @@ const De = A(
     return /* @__PURE__ */ m(
       "div",
       {
-        className: N(
+        className: k(
           "cr-search-input-wrapper",
           `cr-search-input--${e}`,
           o && "is-full-width",
@@ -1659,7 +1659,7 @@ const De = A(
 De.displayName = "BaseSearchInput";
 function te(e) {
   const r = E.createElement(De, e);
-  return F(r, {
+  return j(r, {
     width: (t) => te({ ...e, style: { ...e.style, width: t } }),
     shortcut: (t) => te({ ...e, shortcutBadge: t }),
     onSearch: (t) => te({ ...e, onSearch: t }),
@@ -1705,7 +1705,7 @@ const Be = A(
     E.useEffect(() => {
       v((b) => b.length === e ? b : Array.from({ length: e }, (w, $) => b[$] || ""));
     }, [e]);
-    const g = p ? Array.from({ length: e }, (b, w) => (r == null ? void 0 : r[w]) || "") : u, x = D([]), k = (b) => {
+    const g = p ? Array.from({ length: e }, (b, w) => (r == null ? void 0 : r[w]) || "") : u, x = D([]), N = (b) => {
       p || v(b);
       const w = b.join("");
       t == null || t(w), w.length === e && !b.includes("") && (n == null || n(w));
@@ -1714,16 +1714,16 @@ const Be = A(
       const I = w.target.value.slice(-1);
       if (I && !/^\d$/.test(I)) return;
       const M = [...g];
-      M[b] = I, k(M), I && b < e - 1 && ((S = x.current[b + 1]) == null || S.focus());
+      M[b] = I, N(M), I && b < e - 1 && ((S = x.current[b + 1]) == null || S.focus());
     }, y = (b, w) => {
       var $, I, M;
       if (w.key === "Backspace")
         if (!g[b] && b > 0) {
           const S = [...g];
-          S[b - 1] = "", k(S), ($ = x.current[b - 1]) == null || $.focus();
+          S[b - 1] = "", N(S), ($ = x.current[b - 1]) == null || $.focus();
         } else {
           const S = [...g];
-          S[b] = "", k(S);
+          S[b] = "", N(S);
         }
       else w.key === "ArrowLeft" && b > 0 ? (I = x.current[b - 1]) == null || I.focus() : w.key === "ArrowRight" && b < e - 1 && ((M = x.current[b + 1]) == null || M.focus());
     }, h = (b) => {
@@ -1732,7 +1732,7 @@ const Be = A(
       const w = b.clipboardData.getData("text/plain").trim();
       if (!/^\d+$/.test(w)) return;
       const $ = w.slice(0, e).split(""), I = Array.from({ length: e }, (T, C) => $[C] || "");
-      k(I);
+      N(I);
       const M = Math.min($.length, e - 1);
       (S = x.current[M]) == null || S.focus();
     };
@@ -1740,7 +1740,7 @@ const Be = A(
       "div",
       {
         ref: d,
-        className: N("cr-otp-input", c),
+        className: k("cr-otp-input", c),
         style: {
           display: "inline-flex",
           alignItems: "center",
@@ -1785,7 +1785,7 @@ const Be = A(
 Be.displayName = "BaseOTPInput";
 function ue(e) {
   const r = E.createElement(Be, e);
-  return F(r, {
+  return j(r, {
     masked: (t = !0) => ue({ ...e, masked: t }),
     disabled: (t = !0) => ue({ ...e, disabled: t }),
     onComplete: (t) => ue({ ...e, onComplete: t }),
@@ -1822,8 +1822,8 @@ const Oe = A(
     className: p = "",
     style: u
   }, v) => {
-    const g = r !== void 0, [x, k] = _(t), [f, y] = _(null), h = g ? r : x, b = f !== null ? f : h, w = (S) => {
-      a || s || (g || k(S), n == null || n(S));
+    const g = r !== void 0, [x, N] = _(t), [f, y] = _(null), h = g ? r : x, b = f !== null ? f : h, w = (S) => {
+      a || s || (g || N(S), n == null || n(S));
     }, $ = (S) => {
       if (!(a || s)) {
         if (S.key === "ArrowRight" || S.key === "ArrowUp") {
@@ -1854,7 +1854,7 @@ const Oe = A(
         "aria-valuemax": e,
         tabIndex: a || s ? -1 : 0,
         onKeyDown: $,
-        className: N(
+        className: k(
           "cr-rating",
           `cr-rating--${o}`,
           a && "is-readonly",
@@ -1908,7 +1908,7 @@ const Oe = A(
 Oe.displayName = "BaseRating";
 function re(e) {
   const r = E.createElement(Oe, e);
-  return F(r, {
+  return j(r, {
     readOnly: (t = !0) => re({ ...e, readOnly: t }),
     size: (t) => re({ ...e, size: t }),
     onChange: (t) => re({ ...e, onChange: t }),
@@ -1947,7 +1947,7 @@ const Pe = A(
     emptyText: u = "No options found"
   }, v) => {
     var tt;
-    const g = r !== void 0, [x, k] = _(t), f = g ? r : x, [y, h] = _(!1), [b, w] = _(""), [$, I] = _(0), [M, S] = _([]), [T, C] = _(!1), [R, O] = _(null), V = D(0), U = D(null), he = D(null), we = e.map(
+    const g = r !== void 0, [x, N] = _(t), f = g ? r : x, [y, h] = _(!1), [b, w] = _(""), [$, I] = _(0), [M, S] = _([]), [T, C] = _(!1), [R, O] = _(null), V = D(0), U = D(null), he = D(null), we = e.map(
       (z) => typeof z == "string" ? { label: z, value: z } : z
     ), ce = d ? M : we, Q = d ? ce : ce.filter(
       (z) => z.label.toLowerCase().includes(b.toLowerCase())
@@ -1959,10 +1959,10 @@ const Pe = A(
       const K = setTimeout(() => {
         d(b).then((G) => {
           if (z === V.current) {
-            const Ne = G.map(
+            const ke = G.map(
               (ye) => typeof ye == "string" ? { label: ye, value: ye } : ye
             );
-            S(Ne), C(!1);
+            S(ke), C(!1);
           }
         }).catch((G) => {
           z === V.current && (O((G == null ? void 0 : G.message) || "Search failed"), C(!1));
@@ -1976,14 +1976,14 @@ const Pe = A(
       return document.addEventListener("mousedown", z), () => document.removeEventListener("mousedown", z);
     }, []);
     const L = (z) => {
-      z.disabled || (g || k(z.value), n == null || n(z.value), w(""), h(!1));
+      z.disabled || (g || N(z.value), n == null || n(z.value), w(""), h(!1));
     }, H = (z) => {
       if (!y && (z.key === "ArrowDown" || z.key === "Enter")) {
         h(!0);
         return;
       }
       z.key === "ArrowDown" ? (z.preventDefault(), I((K) => (K + 1) % Math.max(1, Q.length))) : z.key === "ArrowUp" ? (z.preventDefault(), I((K) => (K - 1 + Q.length) % Math.max(1, Q.length))) : z.key === "Enter" ? (z.preventDefault(), Q[$] && L(Q[$])) : z.key === "Escape" && h(!1);
-    }, j = {
+    }, F = {
       xs: "28px",
       sm: "32px",
       md: "40px",
@@ -2000,7 +2000,7 @@ const Pe = A(
       "div",
       {
         ref: U,
-        className: N("cr-combobox", `cr-combobox--${s}`, c),
+        className: k("cr-combobox", `cr-combobox--${s}`, c),
         style: {
           position: "relative",
           width: "100%",
@@ -2037,7 +2037,7 @@ const Pe = A(
                     onKeyDown: H,
                     style: {
                       width: "100%",
-                      height: j[s],
+                      height: F[s],
                       fontSize: q[s],
                       paddingLeft: "12px",
                       paddingRight: "36px",
@@ -2093,7 +2093,7 @@ const Pe = A(
                 /* @__PURE__ */ i("span", { className: "cr-spinner cr-spinner--xs", style: { width: 14, height: 14 } }),
                 " Loading options..."
               ] }) : R ? /* @__PURE__ */ i("div", { style: { padding: "8px 12px", fontSize: "0.875rem", color: "var(--cr-danger, #f43f5e)" }, children: R }) : Q.length === 0 ? /* @__PURE__ */ i("div", { style: { padding: "8px 12px", fontSize: "0.875rem", color: "var(--cr-text-muted)" }, children: u }) : Q.map((z, K) => {
-                const G = z.value === f, Ne = K === $;
+                const G = z.value === f, ke = K === $;
                 return /* @__PURE__ */ m(
                   "div",
                   {
@@ -2109,7 +2109,7 @@ const Pe = A(
                       alignItems: "center",
                       justifyContent: "space-between",
                       cursor: z.disabled ? "not-allowed" : "pointer",
-                      backgroundColor: Ne ? "var(--cr-primary-subtle)" : G ? "var(--cr-bg-surface-hover)" : "transparent",
+                      backgroundColor: ke ? "var(--cr-primary-subtle)" : G ? "var(--cr-bg-surface-hover)" : "transparent",
                       color: G ? "var(--cr-primary)" : z.disabled ? "var(--cr-text-muted)" : "var(--cr-text-primary)",
                       fontWeight: G ? 600 : 400
                     },
@@ -2131,7 +2131,7 @@ const Pe = A(
 Pe.displayName = "BaseCombobox";
 function Ce(e) {
   const r = E.createElement(Pe, e);
-  return F(r, {
+  return j(r, {
     onChange: (t) => Ce({ ...e, onChange: t }),
     placeholder: (t) => Ce({ ...e, placeholder: t })
   });
@@ -2158,7 +2158,7 @@ const We = A(
     loading: p = !1,
     emptyText: u = "No options found"
   }, v) => {
-    const g = r !== void 0, [x, k] = _(t), f = g ? r : x, [y, h] = _(!1), [b, w] = _(""), [$, I] = _([]), [M, S] = _(!1), [T, C] = _(null), R = D(0), O = D(null), V = e.map(
+    const g = r !== void 0, [x, N] = _(t), f = g ? r : x, [y, h] = _(!1), [b, w] = _(""), [$, I] = _([]), [M, S] = _(!1), [T, C] = _(null), R = D(0), O = D(null), V = e.map(
       (L) => typeof L == "string" ? { label: L, value: L } : L
     ), U = d ? $ : V, he = d ? U : U.filter(
       (L) => L.label.toLowerCase().includes(b.toLowerCase())
@@ -2168,15 +2168,15 @@ const We = A(
       const L = ++R.current;
       S(!0), C(null);
       const H = setTimeout(() => {
-        d(b).then((j) => {
+        d(b).then((F) => {
           if (L === R.current) {
-            const q = j.map(
+            const q = F.map(
               (ee) => typeof ee == "string" ? { label: ee, value: ee } : ee
             );
             I(q), S(!1);
           }
-        }).catch((j) => {
-          L === R.current && (C((j == null ? void 0 : j.message) || "Search failed"), S(!1));
+        }).catch((F) => {
+          L === R.current && (C((F == null ? void 0 : F.message) || "Search failed"), S(!1));
         });
       }, 150);
       return () => clearTimeout(H);
@@ -2187,20 +2187,20 @@ const We = A(
       return document.addEventListener("mousedown", L), () => document.removeEventListener("mousedown", L);
     }, []);
     const ce = (L) => {
-      const j = f.includes(L) ? f.filter((q) => q !== L) : [...f, L];
-      g || k(j), n == null || n(j);
+      const F = f.includes(L) ? f.filter((q) => q !== L) : [...f, L];
+      g || N(F), n == null || n(F);
     }, Q = (L, H) => {
       H.stopPropagation();
-      const j = f.filter((q) => q !== L);
-      g || k(j), n == null || n(j);
+      const F = f.filter((q) => q !== L);
+      g || N(F), n == null || n(F);
     }, ge = (L) => {
-      L.stopPropagation(), g || k([]), n == null || n([]);
+      L.stopPropagation(), g || N([]), n == null || n([]);
     };
     return /* @__PURE__ */ m(
       "div",
       {
         ref: O,
-        className: N("cr-multiselect", `cr-multiselect--${s}`, c),
+        className: k("cr-multiselect", `cr-multiselect--${s}`, c),
         style: {
           position: "relative",
           width: "100%",
@@ -2227,8 +2227,8 @@ const We = A(
               },
               children: [
                 f.length === 0 ? /* @__PURE__ */ i("span", { style: { fontSize: "0.875rem", color: "var(--cr-text-muted)", paddingLeft: "4px" }, children: a }) : f.map((L) => {
-                  var j;
-                  const H = ((j = U.find((q) => q.value === L)) == null ? void 0 : j.label) || L;
+                  var F;
+                  const H = ((F = U.find((q) => q.value === L)) == null ? void 0 : F.label) || L;
                   return /* @__PURE__ */ m(
                     "span",
                     {
@@ -2387,7 +2387,7 @@ const We = A(
 We.displayName = "BaseMultiSelect";
 function Se(e) {
   const r = E.createElement(We, e);
-  return F(r, {
+  return j(r, {
     placeholder: (t) => Se({ ...e, placeholder: t }),
     onChange: (t) => Se({ ...e, onChange: t })
   });
@@ -2412,7 +2412,7 @@ const pn = [
   "#64748b",
   "#0f172a",
   "#ffffff"
-], je = A(
+], Fe = A(
   ({
     value: e,
     defaultValue: r = "#6366f1",
@@ -2429,14 +2429,14 @@ const pn = [
       };
       return document.addEventListener("mousedown", f), () => document.removeEventListener("mousedown", f);
     }, []);
-    const k = (f) => {
+    const N = (f) => {
       l || p(f), t == null || t(f);
     };
     return /* @__PURE__ */ m(
       "div",
       {
         ref: x,
-        className: N("cr-color-picker", s),
+        className: k("cr-color-picker", s),
         style: {
           position: "relative",
           display: "inline-flex",
@@ -2493,7 +2493,7 @@ const pn = [
                 /* @__PURE__ */ i("div", { style: { display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "6px", marginBottom: "10px" }, children: n.map((f) => /* @__PURE__ */ i(
                   "div",
                   {
-                    onClick: () => k(f),
+                    onClick: () => N(f),
                     style: {
                       width: "24px",
                       height: "24px",
@@ -2513,7 +2513,7 @@ const pn = [
                     {
                       type: "color",
                       value: u,
-                      onChange: (f) => k(f.target.value),
+                      onChange: (f) => N(f.target.value),
                       style: {
                         width: "28px",
                         height: "28px",
@@ -2529,7 +2529,7 @@ const pn = [
                     {
                       type: "text",
                       value: u,
-                      onChange: (f) => k(f.target.value),
+                      onChange: (f) => N(f.target.value),
                       style: {
                         flex: 1,
                         padding: "4px 8px",
@@ -2552,10 +2552,10 @@ const pn = [
     );
   }
 );
-je.displayName = "BaseColorPicker";
+Fe.displayName = "BaseColorPicker";
 function Kt(e) {
-  const r = E.createElement(je, e);
-  return F(r, {
+  const r = E.createElement(Fe, e);
+  return j(r, {
     onChange: (t) => Kt({ ...e, onChange: t })
   });
 }
@@ -2566,7 +2566,7 @@ function hn(...e) {
       onChange: typeof e[1] == "function" ? e[1] : void 0
     });
   const { ref: r, ...t } = e[0] || {};
-  return E.createElement(je, { ref: r, ...t });
+  return E.createElement(Fe, { ref: r, ...t });
 }
 hn.displayName = "ColorPicker";
 const gn = A(
@@ -2586,7 +2586,7 @@ const gn = A(
     color: v,
     borderColor: g,
     borderWidth: x,
-    borderRadius: k,
+    borderRadius: N,
     display: f,
     className: y = "",
     style: h,
@@ -2609,14 +2609,14 @@ const gn = A(
       ...v ? { color: v } : {},
       ...g ? { borderColor: g } : {},
       ...x !== void 0 ? { borderWidth: x, borderStyle: "solid" } : {},
-      ...k !== void 0 ? { borderRadius: k } : {},
+      ...N !== void 0 ? { borderRadius: N } : {},
       ...f ? { display: f } : {}
     };
     return /* @__PURE__ */ i(
       I,
       {
         ref: $,
-        className: N("cr-box", y),
+        className: k("cr-box", y),
         style: M,
         ...w,
         children: b
@@ -2630,7 +2630,7 @@ const Ee = A(
     "div",
     {
       ref: s,
-      className: N(
+      className: k(
         "cr-container",
         `cr-container--${e}`,
         r && "cr-container--centered",
@@ -2654,7 +2654,7 @@ function fe(e, ...r) {
   return /* @__PURE__ */ i(Ee, { children: n });
 }
 fe.displayName = "Container";
-const Fe = A(
+const je = A(
   ({
     direction: e = "row",
     align: r = "stretch",
@@ -2676,13 +2676,13 @@ const Fe = A(
       flexWrap: typeof n == "boolean" ? n ? "wrap" : "nowrap" : n,
       ...a !== void 0 ? { gap: a } : {}
     };
-    return /* @__PURE__ */ i("div", { ref: p, className: N("cr-flex", o), style: u, ...d, children: l });
+    return /* @__PURE__ */ i("div", { ref: p, className: k("cr-flex", o), style: u, ...d, children: l });
   }
 );
-Fe.displayName = "BaseFlex";
+je.displayName = "BaseFlex";
 function yn(e, r, t) {
   const n = (a) => Jt({ ...r, ...a }, t);
-  return F(e, {
+  return j(e, {
     center: () => n({ align: "center", justify: "center" }),
     between: () => n({ justify: "between" }),
     around: () => n({ justify: "around" }),
@@ -2696,12 +2696,12 @@ function Jt(e, r) {
   const t = E.Children.map(
     r,
     (a, s) => E.isValidElement(a) ? E.cloneElement(a, { key: a.key || `flx-${s}` }) : a
-  ), n = /* @__PURE__ */ i(Fe, { ...e, children: t });
+  ), n = /* @__PURE__ */ i(je, { ...e, children: t });
   return yn(n, e, r);
 }
 function bn(e, ...r) {
   if (e && typeof e == "object" && !E.isValidElement(e) && !Array.isArray(e) && ("direction" in e || "align" in e || "justify" in e || "gap" in e || "children" in e || "className" in e))
-    return /* @__PURE__ */ i(Fe, { ...e });
+    return /* @__PURE__ */ i(je, { ...e });
   let t = [];
   return Array.isArray(e) ? t = e : e !== void 0 && (t = [e, ...r]), Jt({}, t);
 }
@@ -2711,7 +2711,7 @@ const ve = A(
     "hr",
     {
       ref: a,
-      className: N(
+      className: k(
         "cr-divider",
         `cr-divider--${e}`,
         `cr-divider--${r}`,
@@ -2746,7 +2746,7 @@ const He = A(
     "div",
     {
       ref: s,
-      className: N("cr-aspect-ratio", r),
+      className: k("cr-aspect-ratio", r),
       style: {
         position: "relative",
         width: "100%",
@@ -2776,7 +2776,7 @@ const He = A(
 He.displayName = "BaseAspectRatio";
 function ae(e) {
   const r = E.createElement(He, e);
-  return F(r, {
+  return j(r, {
     ratio: (t) => ae({ ...e, ratio: t }),
     square: () => ae({ ...e, ratio: 1 }),
     video: () => ae({ ...e, ratio: 16 / 9 }),
@@ -2806,7 +2806,7 @@ const Ve = A(
     "div",
     {
       ref: c,
-      className: N("cr-scroll-area", "cr-scrollbar", n),
+      className: k("cr-scroll-area", "cr-scrollbar", n),
       style: {
         maxHeight: e,
         maxWidth: r,
@@ -2824,7 +2824,7 @@ const Ve = A(
 Ve.displayName = "BaseScrollArea";
 function oe(e) {
   const r = E.createElement(Ve, e);
-  return F(r, {
+  return j(r, {
     maxHeight: (t) => oe({ ...e, maxHeight: t }),
     maxWidth: (t) => oe({ ...e, maxWidth: t }),
     horizontal: () => oe({ ...e, orientation: "horizontal" }),
@@ -2859,7 +2859,7 @@ const qe = A(
       "div",
       {
         ref: l,
-        className: N("cr-collapsible", v && "is-open", a),
+        className: k("cr-collapsible", v && "is-open", a),
         style: {
           border: "1px solid var(--cr-border-subtle)",
           borderRadius: "var(--cr-radius-md)",
@@ -2932,17 +2932,17 @@ const qe = A(
 qe.displayName = "BaseCollapsible";
 function Qt(e) {
   const r = E.createElement(qe, e);
-  return F(r, {
+  return j(r, {
     open: (t = !0) => Qt({ ...e, isOpen: t })
   });
 }
-function Nn(...e) {
+function kn(...e) {
   if (typeof e[0] == "string" || E.isValidElement(e[0]))
     return Qt({ title: e[0], children: e[1] });
   const { ref: r, ...t } = e[0] || {};
   return E.createElement(qe, { ref: r, ...t });
 }
-Nn.displayName = "Collapsible";
+kn.displayName = "Collapsible";
 const Yt = A(
   ({
     size: e = "md",
@@ -2958,7 +2958,7 @@ const Yt = A(
     s,
     {
       ref: d,
-      className: N(
+      className: k(
         "cr-text",
         `cr-text--${e}`,
         `cr-text--weight-${r}`,
@@ -2990,7 +2990,7 @@ const Zt = A(
       l,
       {
         ref: c,
-        className: N(
+        className: k(
           "cr-heading",
           `cr-heading--${r || (e === 1 ? "2xl" : e === 2 ? "xl" : e === 3 ? "lg" : "md")}`,
           `cr-heading--weight-${t}`,
@@ -3030,7 +3030,7 @@ const Xt = A(
       ref: l,
       target: e ? "_blank" : s,
       rel: e ? "noopener noreferrer" : o,
-      className: N(
+      className: k(
         "cr-link",
         `cr-link--underline-${r}`,
         `cr-link--color-${t}`,
@@ -3055,13 +3055,13 @@ function er(...e) {
 }
 er.displayName = "Link";
 er.create = (e) => Te(e);
-const kn = A(
+const Nn = A(
   ({ block: e = !1, copyable: r = !1, language: t, className: n = "", children: a, ...s }, o) => {
     const [c, l] = _(!1), d = () => {
       const p = typeof a == "string" ? a : "";
       p && navigator.clipboard && (navigator.clipboard.writeText(p), l(!0), setTimeout(() => l(!1), 2e3));
     };
-    return e ? /* @__PURE__ */ m("div", { className: N("cr-code-block", n), children: [
+    return e ? /* @__PURE__ */ m("div", { className: k("cr-code-block", n), children: [
       /* @__PURE__ */ m("div", { className: "cr-code-block__header", children: [
         t && /* @__PURE__ */ i("span", { className: "cr-code-block__lang", children: t }),
         r && /* @__PURE__ */ m(
@@ -3072,17 +3072,17 @@ const kn = A(
             onClick: d,
             "aria-label": c ? "Copied" : "Copy code",
             children: [
-              c ? /* @__PURE__ */ i(Nt, { size: 14, className: "cr-text-success" }) : /* @__PURE__ */ i(Rr, { size: 14 }),
+              c ? /* @__PURE__ */ i(kt, { size: 14, className: "cr-text-success" }) : /* @__PURE__ */ i(Rr, { size: 14 }),
               /* @__PURE__ */ i("span", { children: c ? "Copied!" : "Copy" })
             ]
           }
         )
       ] }),
       /* @__PURE__ */ i("pre", { className: "cr-code-block__pre", children: /* @__PURE__ */ i("code", { ref: o, className: "cr-code-block__code", ...s, children: a }) })
-    ] }) : /* @__PURE__ */ i("code", { ref: o, className: N("cr-code-inline", n), ...s, children: a });
+    ] }) : /* @__PURE__ */ i("code", { ref: o, className: k("cr-code-inline", n), ...s, children: a });
   }
 );
-kn.displayName = "Code";
+Nn.displayName = "Code";
 const Ge = A(
   ({
     size: e = "md",
@@ -3097,7 +3097,7 @@ const Ge = A(
     "label",
     {
       ref: l,
-      className: N(
+      className: k(
         "cr-label",
         `cr-label--${e}`,
         r && "is-required",
@@ -3151,7 +3151,7 @@ const Ge = A(
 Ge.displayName = "BaseLabel";
 function ne(e) {
   const r = E.createElement(Ge, e);
-  return F(r, {
+  return j(r, {
     required: (t = !0) => ne({ ...e, required: t }),
     disabled: (t = !0) => ne({ ...e, disabled: t }),
     for: (t) => ne({ ...e, htmlFor: t }),
@@ -3182,7 +3182,7 @@ const tr = A(
     "span",
     {
       ref: c,
-      className: N(
+      className: k(
         "cr-badge",
         `cr-badge--${e}`,
         `cr-badge--${r}`,
@@ -3218,7 +3218,7 @@ const Cn = A(
       "div",
       {
         ref: c,
-        className: N("cr-avatar", `cr-avatar--${n}`, s),
+        className: k("cr-avatar", `cr-avatar--${n}`, s),
         ...o,
         children: [
           e && !l ? /* @__PURE__ */ i(
@@ -3230,7 +3230,7 @@ const Cn = A(
               onError: () => d(!0)
             }
           ) : t ? /* @__PURE__ */ i("span", { className: "cr-avatar__initials", children: p(t) }) : /* @__PURE__ */ i(Ur, { className: "cr-avatar__fallback-icon", size: 18 }),
-          a && /* @__PURE__ */ i("span", { className: N("cr-avatar__status", `cr-avatar__status--${a}`) })
+          a && /* @__PURE__ */ i("span", { className: k("cr-avatar__status", `cr-avatar__status--${a}`) })
         ]
       }
     );
@@ -3254,7 +3254,7 @@ const Sn = A(
       "table",
       {
         ref: d,
-        className: N(
+        className: k(
           "cr-table",
           e && "cr-table--striped",
           r && "cr-table--hoverable",
@@ -3301,12 +3301,12 @@ function ti({
     let v;
     d.includes(u) ? v = d.filter((g) => g !== u) : v = r ? [...d, u] : [u], o || l(v), a == null || a(v);
   };
-  return /* @__PURE__ */ i("div", { className: N("cr-accordion", s), children: e.map((u) => {
+  return /* @__PURE__ */ i("div", { className: k("cr-accordion", s), children: e.map((u) => {
     const v = d.includes(u.id);
     return /* @__PURE__ */ m(
       "div",
       {
-        className: N(
+        className: k(
           "cr-accordion__item",
           v && "is-expanded",
           u.disabled && "is-disabled"
@@ -3327,7 +3327,7 @@ function ti({
                 /* @__PURE__ */ i(
                   _t,
                   {
-                    className: N(
+                    className: k(
                       "cr-accordion__chevron",
                       v && "cr-accordion__chevron--expanded"
                     ),
@@ -3363,7 +3363,7 @@ function ri({
   className: o = ""
 }) {
   const c = t !== void 0 && t >= 0;
-  return /* @__PURE__ */ m(yt, { variant: s, className: N("cr-stat-card", o), children: [
+  return /* @__PURE__ */ m(yt, { variant: s, className: k("cr-stat-card", o), children: [
     /* @__PURE__ */ m("div", { className: "cr-stat-card__top", children: [
       /* @__PURE__ */ i("span", { className: "cr-stat-card__title", children: e }),
       a && /* @__PURE__ */ i("div", { className: "cr-stat-card__icon", children: a })
@@ -3373,7 +3373,7 @@ function ri({
       /* @__PURE__ */ m(
         "span",
         {
-          className: N(
+          className: k(
             "cr-stat-card__badge",
             c ? "is-positive" : "is-negative"
           ),
@@ -3393,7 +3393,7 @@ const Ke = A(
     "div",
     {
       ref: s,
-      className: N("cr-timeline", r && "cr-timeline--dense", t),
+      className: k("cr-timeline", r && "cr-timeline--dense", t),
       style: {
         display: "flex",
         flexDirection: "column",
@@ -3513,7 +3513,7 @@ const Ke = A(
 Ke.displayName = "BaseTimeline";
 function nr(e) {
   const r = E.createElement(Ke, e);
-  return F(r, {
+  return j(r, {
     dense: () => nr({ ...e, dense: !0 })
   });
 }
@@ -3547,7 +3547,7 @@ function Je({
     "div",
     {
       role: "alert",
-      className: N("cr-alert", `cr-alert--${e}`, o),
+      className: k("cr-alert", `cr-alert--${e}`, o),
       children: [
         /* @__PURE__ */ i("div", { className: "cr-alert__icon", children: s || d[e] }),
         /* @__PURE__ */ m("div", { className: "cr-alert__content", children: [
@@ -3571,7 +3571,7 @@ function Je({
 Je.displayName = "BaseAlert";
 function $n(e, r) {
   const t = (n) => ar({ ...r, ...n });
-  return F(e, {
+  return j(e, {
     success: () => t({ variant: "success" }),
     warning: () => t({ variant: "warning" }),
     danger: () => t({ variant: "danger" }),
@@ -3605,7 +3605,7 @@ function Qe({
     "span",
     {
       role: "status",
-      className: N(
+      className: k(
         "cr-spinner",
         `cr-spinner--${e}`,
         `cr-spinner--${r}`,
@@ -3639,7 +3639,7 @@ function In({
   return /* @__PURE__ */ i(
     "div",
     {
-      className: N("cr-skeleton", t && "cr-skeleton--circle", n),
+      className: k("cr-skeleton", t && "cr-skeleton--circle", n),
       style: {
         width: e,
         height: r,
@@ -3659,7 +3659,7 @@ function ni({
   className: o = ""
 }) {
   const c = Math.min(100, Math.max(0, e / r * 100));
-  return /* @__PURE__ */ m("div", { className: N("cr-progress-wrapper", o), children: [
+  return /* @__PURE__ */ m("div", { className: k("cr-progress-wrapper", o), children: [
     /* @__PURE__ */ i(
       "div",
       {
@@ -3667,7 +3667,7 @@ function ni({
         "aria-valuenow": s ? void 0 : Math.round(c),
         "aria-valuemin": 0,
         "aria-valuemax": 100,
-        className: N(
+        className: k(
           "cr-progress",
           `cr-progress--${t}`,
           `cr-progress--${n}`,
@@ -3695,7 +3695,7 @@ function ai({
   action: n,
   className: a = ""
 }) {
-  return /* @__PURE__ */ m("div", { className: N("cr-empty-state", a), children: [
+  return /* @__PURE__ */ m("div", { className: k("cr-empty-state", a), children: [
     /* @__PURE__ */ i("div", { className: "cr-empty-state__icon", children: e }),
     /* @__PURE__ */ i("h4", { className: "cr-empty-state__title", children: r }),
     t && /* @__PURE__ */ i("p", { className: "cr-empty-state__description", children: t }),
@@ -3710,7 +3710,7 @@ function ii({
   icon: a = /* @__PURE__ */ i(At, { size: 48, className: "cr-text-danger" }),
   className: s = ""
 }) {
-  return /* @__PURE__ */ m("div", { className: N("cr-error-state", s), children: [
+  return /* @__PURE__ */ m("div", { className: k("cr-error-state", s), children: [
     /* @__PURE__ */ i("div", { className: "cr-error-state__icon", children: a }),
     /* @__PURE__ */ i("h4", { className: "cr-error-state__title", children: e }),
     /* @__PURE__ */ i("p", { className: "cr-error-state__message", children: r }),
@@ -3747,7 +3747,7 @@ class si extends _r {
       "div",
       {
         role: "alert",
-        className: N("cr-error-boundary", this.props.className),
+        className: k("cr-error-boundary", this.props.className),
         style: {
           padding: "2rem",
           backgroundColor: "var(--cr-bg-surface)",
@@ -3848,7 +3848,7 @@ function Ye(e, r = !0) {
     };
   }, [e, r]);
 }
-function ke({
+function Ne({
   isOpen: e,
   onClose: r,
   title: t,
@@ -3869,7 +3869,7 @@ function ke({
       c && y.key === "Escape" && r();
     };
     document.addEventListener("keydown", x);
-    const k = document.body.style.overflow;
+    const N = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const f = setTimeout(() => {
       if (d != null && d.current)
@@ -3882,7 +3882,7 @@ function ke({
       }
     }, 50);
     return () => {
-      clearTimeout(f), document.removeEventListener("keydown", x), document.body.style.overflow = k, p != null && p.current ? p.current.focus() : v.current && typeof v.current.focus == "function" && v.current.focus();
+      clearTimeout(f), document.removeEventListener("keydown", x), document.body.style.overflow = N, p != null && p.current ? p.current.focus() : v.current && typeof v.current.focus == "function" && v.current.focus();
     };
   }, [e, c, r, d, p]), !e) return null;
   const g = /* @__PURE__ */ m(
@@ -3905,7 +3905,7 @@ function ke({
         /* @__PURE__ */ i("div", { className: "cr-modal__container", children: /* @__PURE__ */ m(
           "div",
           {
-            className: N(
+            className: k(
               "cr-modal__dialog",
               `cr-modal__dialog--${n}`,
               "cr-animate-fade-in",
@@ -3957,7 +3957,7 @@ function oi({
     document.addEventListener("keydown", g);
     const x = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const k = setTimeout(() => {
+    const N = setTimeout(() => {
       if (l != null && l.current)
         l.current.focus();
       else if (p.current) {
@@ -3968,7 +3968,7 @@ function oi({
       }
     }, 50);
     return () => {
-      clearTimeout(k), document.removeEventListener("keydown", g), document.body.style.overflow = x, d != null && d.current ? d.current.focus() : u.current && typeof u.current.focus == "function" && u.current.focus();
+      clearTimeout(N), document.removeEventListener("keydown", g), document.body.style.overflow = x, d != null && d.current ? d.current.focus() : u.current && typeof u.current.focus == "function" && u.current.focus();
     };
   }, [e, r, l, d]), !e) return null;
   const v = /* @__PURE__ */ m(
@@ -3985,7 +3985,7 @@ function oi({
         /* @__PURE__ */ m(
           "div",
           {
-            className: N(
+            className: k(
               "cr-drawer__panel",
               `cr-drawer--${n}`,
               `cr-drawer--size-${a}`,
@@ -4051,7 +4051,7 @@ function ci({
         d && /* @__PURE__ */ i(
           "div",
           {
-            className: N(
+            className: k(
               "cr-popover__content",
               `cr-popover--${t}`,
               "cr-animate-fade-in",
@@ -4093,7 +4093,7 @@ function li({
           "div",
           {
             role: "tooltip",
-            className: N(
+            className: k(
               "cr-tooltip",
               `cr-tooltip--${t}`,
               "cr-animate-fade-in",
@@ -4123,14 +4123,14 @@ function di({ items: e, children: r, className: t = "" }) {
       "div",
       {
         ref: c,
-        className: N("cr-context-menu", "cr-animate-fade-in", t),
+        className: k("cr-context-menu", "cr-animate-fade-in", t),
         style: { top: s.y, left: s.x },
         children: e.map((d) => /* @__PURE__ */ m(
           "button",
           {
             type: "button",
             disabled: d.disabled,
-            className: N(
+            className: k(
               "cr-context-menu__item",
               d.danger && "is-danger"
             ),
@@ -4200,7 +4200,7 @@ const Ze = A(
         hover: "var(--cr-primary-hover)",
         iconColor: "#6366f1"
       }
-    }, x = g[c] || g.danger, k = /* @__PURE__ */ i(
+    }, x = g[c] || g.danger, N = /* @__PURE__ */ i(
       "div",
       {
         className: "cr-alert-dialog-backdrop",
@@ -4227,7 +4227,7 @@ const Ze = A(
             "aria-labelledby": "cr-dialog-title",
             "aria-describedby": "cr-dialog-desc",
             tabIndex: -1,
-            className: N("cr-alert-dialog", l),
+            className: k("cr-alert-dialog", l),
             style: {
               backgroundColor: "var(--cr-bg-surface)",
               borderRadius: "var(--cr-radius-lg)",
@@ -4346,13 +4346,13 @@ const Ze = A(
         )
       }
     );
-    return typeof document < "u" && document.body ? Me(k, document.body) : k;
+    return typeof document < "u" && document.body ? Me(N, document.body) : N;
   }
 );
 Ze.displayName = "BaseAlertDialog";
 function Z(e) {
   const r = E.createElement(Ze, e);
-  return F(r, {
+  return j(r, {
     danger: () => Z({ ...e, variant: "danger" }),
     warning: () => Z({ ...e, variant: "warning" }),
     info: () => Z({ ...e, variant: "info" }),
@@ -4389,7 +4389,7 @@ function Rn({
   return /* @__PURE__ */ m(
     "aside",
     {
-      className: N(
+      className: k(
         "cr-sidebar",
         n && "cr-sidebar--collapsed",
         a
@@ -4401,7 +4401,7 @@ function Rn({
           {
             type: "button",
             disabled: s.disabled,
-            className: N(
+            className: k(
               "cr-sidebar__item",
               s.active && "is-active",
               s.disabled && "is-disabled"
@@ -4426,7 +4426,7 @@ function ui({
   separator: r = /* @__PURE__ */ i(Et, { size: 14 }),
   className: t = ""
 }) {
-  return /* @__PURE__ */ i("nav", { "aria-label": "Breadcrumb", className: N("cr-breadcrumbs", t), children: /* @__PURE__ */ i("ol", { className: "cr-breadcrumbs__list", children: e.map((n, a) => {
+  return /* @__PURE__ */ i("nav", { "aria-label": "Breadcrumb", className: k("cr-breadcrumbs", t), children: /* @__PURE__ */ i("ol", { className: "cr-breadcrumbs__list", children: e.map((n, a) => {
     const s = a === e.length - 1, o = n.isCurrent || s;
     return /* @__PURE__ */ m("li", { className: "cr-breadcrumbs__item", children: [
       o ? /* @__PURE__ */ i("span", { className: "cr-breadcrumbs__current", "aria-current": "page", children: n.label }) : n.href ? /* @__PURE__ */ i("a", { href: n.href, className: "cr-breadcrumbs__link", children: n.label }) : /* @__PURE__ */ i(
@@ -4456,27 +4456,27 @@ function mi({
     t === void 0 && c(g), n == null || n(g);
   }, u = (g, x) => {
     var h;
-    const k = e.map((b, w) => b.disabled ? -1 : w).filter((b) => b !== -1);
-    if (k.length === 0) return;
+    const N = e.map((b, w) => b.disabled ? -1 : w).filter((b) => b !== -1);
+    if (N.length === 0) return;
     let f = -1;
-    const y = k.indexOf(x);
+    const y = N.indexOf(x);
     if (g.key === "ArrowRight") {
       g.preventDefault();
-      const b = (y + 1) % k.length;
-      f = k[b];
+      const b = (y + 1) % N.length;
+      f = N[b];
     } else if (g.key === "ArrowLeft") {
       g.preventDefault();
-      const b = (y - 1 + k.length) % k.length;
-      f = k[b];
-    } else g.key === "Home" ? (g.preventDefault(), f = k[0]) : g.key === "End" && (g.preventDefault(), f = k[k.length - 1]);
+      const b = (y - 1 + N.length) % N.length;
+      f = N[b];
+    } else g.key === "Home" ? (g.preventDefault(), f = N[0]) : g.key === "End" && (g.preventDefault(), f = N[N.length - 1]);
     if (f !== -1) {
       const b = e[f];
       p(b.id), (h = d.current[f]) == null || h.focus();
     }
   }, v = e.find((g) => g.id === l);
-  return /* @__PURE__ */ m("div", { className: N("cr-tabs", `cr-tabs--${a}`, s), children: [
+  return /* @__PURE__ */ m("div", { className: k("cr-tabs", `cr-tabs--${a}`, s), children: [
     /* @__PURE__ */ i("div", { role: "tablist", "aria-orientation": "horizontal", className: "cr-tabs__list", children: e.map((g, x) => {
-      const k = g.id === l;
+      const N = g.id === l;
       return /* @__PURE__ */ m(
         "button",
         {
@@ -4485,13 +4485,13 @@ function mi({
           },
           id: `cr-tab-${g.id}`,
           role: "tab",
-          "aria-selected": k,
+          "aria-selected": N,
           "aria-controls": `cr-tabpanel-${g.id}`,
-          tabIndex: k ? 0 : -1,
+          tabIndex: N ? 0 : -1,
           disabled: g.disabled,
-          className: N(
+          className: k(
             "cr-tabs__tab",
-            k && "is-selected",
+            N && "is-selected",
             g.disabled && "is-disabled"
           ),
           onClick: () => p(g.id),
@@ -4534,7 +4534,7 @@ function fi({
       a.push(l);
     e < r - 2 && a.push("..."), a.push(r);
   }
-  return /* @__PURE__ */ m("nav", { "aria-label": "Pagination", className: N("cr-pagination", n), children: [
+  return /* @__PURE__ */ m("nav", { "aria-label": "Pagination", className: k("cr-pagination", n), children: [
     /* @__PURE__ */ i(
       "button",
       {
@@ -4551,7 +4551,7 @@ function fi({
         "button",
         {
           type: "button",
-          className: N(
+          className: k(
             "cr-pagination__page",
             o === e && "is-active"
           ),
@@ -4582,7 +4582,7 @@ function pi({
   className: n = ""
 }) {
   const [a, s] = _(!1), o = D(null);
-  return Re(o, () => s(!1), a), /* @__PURE__ */ m("div", { ref: o, className: N("cr-dropdown", n), children: [
+  return Re(o, () => s(!1), a), /* @__PURE__ */ m("div", { ref: o, className: k("cr-dropdown", n), children: [
     /* @__PURE__ */ i(
       "div",
       {
@@ -4597,7 +4597,7 @@ function pi({
       "div",
       {
         role: "menu",
-        className: N(
+        className: k(
           "cr-dropdown__menu",
           `cr-dropdown__menu--${t}`,
           "cr-animate-fade-in"
@@ -4608,7 +4608,7 @@ function pi({
             role: "menuitem",
             type: "button",
             disabled: c.disabled,
-            className: N(
+            className: k(
               "cr-dropdown__item",
               c.danger && "is-danger",
               c.disabled && "is-disabled"
@@ -4645,7 +4645,7 @@ const Xe = A(
         ref: c,
         role: "navigation",
         "aria-label": "Progress Stepper",
-        className: N("cr-stepper", `cr-stepper--${t}`, a),
+        className: k("cr-stepper", `cr-stepper--${t}`, a),
         style: {
           display: "flex",
           flexDirection: l ? "column" : "row",
@@ -4731,7 +4731,7 @@ const Xe = A(
 Xe.displayName = "BaseStepper";
 function me(e) {
   const r = E.createElement(Xe, e);
-  return F(r, {
+  return j(r, {
     active: (t) => me({ ...e, activeStep: t }),
     vertical: () => me({ ...e, orientation: "vertical" }),
     horizontal: () => me({ ...e, orientation: "horizontal" }),
@@ -4760,7 +4760,7 @@ const ir = A(
     return /* @__PURE__ */ m(
       "div",
       {
-        className: N(
+        className: k(
           "cr-image-wrapper",
           `cr-image--rounded-${n}`,
           s
@@ -4774,7 +4774,7 @@ const ir = A(
               ref: l,
               src: u && t ? t : e,
               alt: r,
-              className: N(
+              className: k(
                 "cr-image",
                 d && "is-loading",
                 u && "has-error"
@@ -4806,7 +4806,7 @@ const Bn = A(
   ({ rounded: e = "md", aspectRatio: r = "16/9", className: t = "", style: n, ...a }, s) => /* @__PURE__ */ i(
     "div",
     {
-      className: N(
+      className: k(
         "cr-video-wrapper",
         `cr-video--rounded-${e}`,
         t
@@ -4830,7 +4830,7 @@ const On = A(
       "span",
       {
         ref: c,
-        className: N(
+        className: k(
           "cr-icon",
           t && "cr-animate-spin",
           n
@@ -4858,7 +4858,7 @@ const Pn = A(
     "form",
     {
       ref: s,
-      className: N("cr-form", r),
+      className: k("cr-form", r),
       style: {
         display: "flex",
         flexDirection: "column",
@@ -4872,7 +4872,7 @@ const Pn = A(
 );
 Pn.displayName = "Form";
 const or = A(
-  ({ required: e = !1, optional: r = !1, className: t = "", children: n, ...a }, s) => /* @__PURE__ */ m("label", { ref: s, className: N("cr-form-label", t), ...a, children: [
+  ({ required: e = !1, optional: r = !1, className: t = "", children: n, ...a }, s) => /* @__PURE__ */ m("label", { ref: s, className: k("cr-form-label", t), ...a, children: [
     n,
     e && /* @__PURE__ */ i("span", { className: "cr-form-label__required", "aria-hidden": "true", children: "*" }),
     r && /* @__PURE__ */ i("span", { className: "cr-form-label__optional", children: "(optional)" })
@@ -4885,7 +4885,7 @@ const cr = A(
     {
       ref: n,
       role: "alert",
-      className: N("cr-form-error", e),
+      className: k("cr-form-error", e),
       ...t,
       children: [
         /* @__PURE__ */ i(At, { size: 14, className: "cr-form-error__icon" }),
@@ -4910,7 +4910,7 @@ const Wn = A(
     "div",
     {
       ref: d,
-      className: N("cr-form-field", a && "has-error", o),
+      className: k("cr-form-field", a && "has-error", o),
       ...l,
       children: [
         e && /* @__PURE__ */ i(or, { htmlFor: s, required: r, optional: t, children: e }),
@@ -4943,7 +4943,7 @@ function hi({
       }
     },
     [r]
-  ), k = P(
+  ), N = P(
     (T, C) => {
       c((R) => {
         const O = { ...R, [T]: C };
@@ -4970,9 +4970,9 @@ function hi({
       const C = T.target, R = C.name;
       if (!R) return;
       let O = C.value;
-      C instanceof HTMLInputElement && (C.type === "checkbox" ? O = C.checked : C.type === "number" && (O = C.value === "" ? "" : Number(C.value))), k(R, O);
+      C instanceof HTMLInputElement && (C.type === "checkbox" ? O = C.checked : C.type === "number" && (O = C.value === "" ? "" : Number(C.value))), N(R, O);
     },
-    [k]
+    [N]
   ), b = P(
     (T) => {
       const C = T.target.name;
@@ -5013,14 +5013,14 @@ function hi({
       name: String(T),
       value: o[T] ?? "",
       onChange: (C) => {
-        C && C.target ? h(C) : k(T, C);
+        C && C.target ? h(C) : N(T, C);
       },
       onBlur: (C) => {
         C && C.target ? b(C) : y(T, !0);
       },
       error: p[T] ? l[T] : void 0
     }),
-    [o, l, p, h, b, k, y]
+    [o, l, p, h, b, N, y]
   ), M = rt(() => JSON.stringify(o) !== JSON.stringify(n.current), [o]), S = rt(() => Object.keys(l).length === 0, [l]);
   return {
     values: o,
@@ -5030,7 +5030,7 @@ function hi({
     isValid: S,
     isDirty: M,
     setValues: c,
-    setFieldValue: k,
+    setFieldValue: N,
     setFieldError: f,
     setFieldTouched: y,
     handleChange: h,
@@ -5056,7 +5056,7 @@ function gi({
     d((b) => ({ ...b, [h]: !0 }));
   }, x = (h, b) => {
     c((w) => ({ ...w, [h]: b }));
-  }, k = async (h) => {
+  }, N = async (h) => {
     if (h && h.preventDefault(), r) {
       const b = r(a);
       if (c(b), Object.keys(b).length > 0) return;
@@ -5074,7 +5074,7 @@ function gi({
     setValue: v,
     setTouched: g,
     setError: x,
-    handleSubmit: k,
+    handleSubmit: N,
     isSubmitting: p,
     isValid: f
   };
@@ -5213,7 +5213,7 @@ function wi({
     }
   );
 }
-function Ni({
+function ki({
   children: e,
   fallback: r = null,
   requiredRole: t,
@@ -5231,12 +5231,12 @@ class nt extends Error {
     this.name = "ApiError", this.status = t, this.data = a;
   }
 }
-class jn extends Error {
+class Fn extends Error {
   constructor(r = "Network connection failed") {
     super(r), this.name = "NetworkError";
   }
 }
-class Fn extends Error {
+class jn extends Error {
   constructor(r = "Request timed out") {
     super(r), this.name = "TimeoutError";
   }
@@ -5269,10 +5269,10 @@ async function be(e, r = {}) {
       headers: l.headers
     };
   } catch (l) {
-    throw clearTimeout(c), l.name === "AbortError" ? new Fn() : l instanceof nt ? l : new jn(l.message);
+    throw clearTimeout(c), l.name === "AbortError" ? new jn() : l instanceof nt ? l : new Fn(l.message);
   }
 }
-function ki(e) {
+function Ni(e) {
   const { baseUrl: r, defaultHeaders: t = {}, getAuthToken: n, timeoutMs: a } = e, s = async (o) => {
     const c = {
       "Content-Type": "application/json",
@@ -5334,7 +5334,7 @@ function _i({
   footer: s,
   className: o = ""
 }) {
-  return /* @__PURE__ */ m("div", { className: N("cr-landing-layout", o), children: [
+  return /* @__PURE__ */ m("div", { className: k("cr-landing-layout", o), children: [
     /* @__PURE__ */ i($r, { brand: e, links: r, actions: t, sticky: !0, glass: !0 }),
     /* @__PURE__ */ m("main", { className: "cr-landing-layout__main", children: [
       /* @__PURE__ */ i("section", { className: "cr-landing-layout__hero", children: /* @__PURE__ */ i(fe, { maxWidth: "xl", children: n }) }),
@@ -5352,7 +5352,7 @@ function Ci({
   className: s = ""
 }) {
   const [o, c] = _(!1);
-  return /* @__PURE__ */ m("div", { className: N("cr-dashboard-layout", s), children: [
+  return /* @__PURE__ */ m("div", { className: k("cr-dashboard-layout", s), children: [
     /* @__PURE__ */ i(
       Rn,
       {
@@ -5392,7 +5392,7 @@ function Si({
   return /* @__PURE__ */ i(
     "div",
     {
-      className: N(
+      className: k(
         "cr-auth-layout",
         s && "cr-auth-layout--pattern",
         o
@@ -5421,7 +5421,7 @@ function Ei({
   const [s, o] = _(
     n || (t[0] ? t[0].id : "")
   ), c = t.find((l) => l.id === s);
-  return /* @__PURE__ */ i("div", { className: N("cr-settings-layout", a), children: /* @__PURE__ */ m(fe, { maxWidth: "xl", children: [
+  return /* @__PURE__ */ i("div", { className: k("cr-settings-layout", a), children: /* @__PURE__ */ m(fe, { maxWidth: "xl", children: [
     /* @__PURE__ */ m("div", { className: "cr-settings-layout__header", children: [
       /* @__PURE__ */ i("h1", { className: "cr-settings-layout__title", children: e }),
       r && /* @__PURE__ */ i("p", { className: "cr-settings-layout__description", children: r })
@@ -5431,7 +5431,7 @@ function Ei({
         "button",
         {
           type: "button",
-          className: N(
+          className: k(
             "cr-settings-layout__tab",
             l.id === s && "is-active"
           ),
@@ -5506,7 +5506,7 @@ const xe = A(
       "div",
       {
         ref: l,
-        className: N("cr-result", `cr-result--${e}`, s),
+        className: k("cr-result", `cr-result--${e}`, s),
         style: {
           display: "flex",
           flexDirection: "column",
@@ -5559,7 +5559,7 @@ const xe = A(
 xe.displayName = "BaseResult";
 function se(e) {
   const r = E.createElement(xe, e);
-  return F(r, {
+  return j(r, {
     success: () => se({ ...e, status: "success" }),
     error: () => se({ ...e, status: "error" }),
     warning: () => se({ ...e, status: "warning" }),
@@ -5587,7 +5587,7 @@ const Vn = A(
     "div",
     {
       ref: c,
-      className: N("cr-not-found-page", a),
+      className: k("cr-not-found-page", a),
       style: {
         minHeight: "70vh",
         display: "flex",
@@ -5607,7 +5607,7 @@ const Vn = A(
             {
               variant: "primary",
               size: "lg",
-              onClick: () => Nr.navigate(t),
+              onClick: () => kr.navigate(t),
               children: n
             }
           )
@@ -5987,7 +5987,7 @@ function Kn({
   searchable: o = !0,
   onRefresh: c
 }) {
-  const [l, d] = _([]), [p, u] = _(!!(r && t === void 0)), [v, g] = _(""), x = t !== void 0 ? t : l, k = n !== void 0 ? n : p, f = P(async (h = "") => {
+  const [l, d] = _([]), [p, u] = _(!!(r && t === void 0)), [v, g] = _(""), x = t !== void 0 ? t : l, N = n !== void 0 ? n : p, f = P(async (h = "") => {
     if (r) {
       u(!0);
       try {
@@ -6019,7 +6019,7 @@ function Kn({
       ) }),
       c && /* @__PURE__ */ i(Y, { size: "sm", variant: "outline", onClick: c, children: "Refresh" })
     ] }),
-    k ? /* @__PURE__ */ m("div", { style: { padding: 40, textAlign: "center" }, children: [
+    N ? /* @__PURE__ */ m("div", { style: { padding: 40, textAlign: "center" }, children: [
       /* @__PURE__ */ i(Qe, { size: "lg" }),
       /* @__PURE__ */ m(ie, { style: { marginTop: 12 }, color: "muted", children: [
         "Loading ",
@@ -6056,7 +6056,7 @@ function Kn({
                   onClick: () => a(h),
                   title: `Edit ${e.singular}`,
                   children: [
-                    /* @__PURE__ */ i(jr, { size: 14, style: { marginRight: 4 } }),
+                    /* @__PURE__ */ i(Fr, { size: 14, style: { marginRight: 4 } }),
                     " Edit"
                   ]
                 }
@@ -6089,7 +6089,7 @@ function Li({
   title: n,
   subtitle: a
 }) {
-  const [s] = _(() => Un(e.name, e.endpoint, r)), [o, c] = _(t), [l, d] = _(!1), [p, u] = _(!1), [v, g] = _(!1), [x, k] = _(!1), [f, y] = _(null), [h, b] = _(!1), w = P(async () => {
+  const [s] = _(() => Un(e.name, e.endpoint, r)), [o, c] = _(t), [l, d] = _(!1), [p, u] = _(!1), [v, g] = _(!1), [x, N] = _(!1), [f, y] = _(null), [h, b] = _(!1), w = P(async () => {
     d(!0);
     try {
       const S = await s.list();
@@ -6123,7 +6123,7 @@ function Li({
     if (f) {
       b(!0);
       try {
-        await s.delete(f.id), k(!1), y(null), await w();
+        await s.delete(f.id), N(!1), y(null), await w();
       } finally {
         b(!1);
       }
@@ -6141,7 +6141,7 @@ function Li({
           variant: "primary",
           onClick: () => u(!0),
           children: [
-            /* @__PURE__ */ i(Fr, { size: 16, style: { marginRight: 6 } }),
+            /* @__PURE__ */ i(jr, { size: 16, style: { marginRight: 6 } }),
             " Add ",
             e.singular
           ]
@@ -6158,13 +6158,13 @@ function Li({
           y(S), g(!0);
         },
         onDelete: (S) => {
-          y(S), k(!0);
+          y(S), N(!0);
         },
         onRefresh: w
       }
     ),
     /* @__PURE__ */ i(
-      ke,
+      Ne,
       {
         isOpen: p,
         onClose: () => u(!1),
@@ -6183,7 +6183,7 @@ function Li({
       }
     ),
     /* @__PURE__ */ i(
-      ke,
+      Ne,
       {
         isOpen: v,
         onClose: () => {
@@ -6207,11 +6207,11 @@ function Li({
       }
     ),
     /* @__PURE__ */ i(
-      ke,
+      Ne,
       {
         isOpen: x,
         onClose: () => {
-          k(!1), y(null);
+          N(!1), y(null);
         },
         title: `Delete ${e.singular}`,
         size: "sm",
@@ -6228,7 +6228,7 @@ function Li({
               {
                 variant: "ghost",
                 onClick: () => {
-                  k(!1), y(null);
+                  N(!1), y(null);
                 },
                 disabled: h,
                 children: "Cancel"
@@ -6293,7 +6293,7 @@ function Jn(e) {
     endpoint: `/api/${o.toLowerCase()}`,
     fields: l,
     searchableFields: l.filter((h) => h.type === "string" || h.type === "email").map((h) => h.name)
-  }, g = /searchable|search/i.test(r), x = /paginated|pagination|pages/i.test(r), k = {
+  }, g = /searchable|search/i.test(r), x = /paginated|pagination|pages/i.test(r), N = {
     id: `view-table-${o.toLowerCase()}`,
     title: `${o} Table`,
     type: "table",
@@ -6332,7 +6332,7 @@ function Jn(e) {
     name: n,
     title: `${n}`,
     path: `/${n.toLowerCase().replace(/\s+/g, "-")}`,
-    views: [k],
+    views: [N],
     actions: f
   };
   return {
@@ -6394,9 +6394,9 @@ function Qn(e) {
       a.fields.push(T), ($ === "string" || $ === "email") && ((o = a.searchableFields) == null || o.push(h));
       continue;
     }
-    const k = u.match(/^page\s+["']?([^"']+)["']?/i);
-    if (k) {
-      const h = k[1].trim();
+    const N = u.match(/^page\s+["']?([^"']+)["']?/i);
+    if (N) {
+      const h = N[1].trim();
       s = {
         id: `page-${h.toLowerCase()}`,
         name: h,
@@ -6751,7 +6751,7 @@ export {
   nt as ApiError,
   xn as AspectRatio,
   dr as AuthContext,
-  Ni as AuthGuard,
+  ki as AuthGuard,
   Si as AuthLayout,
   wi as AuthProvider,
   Cn as Avatar,
@@ -6763,11 +6763,11 @@ export {
   Y as BaseButton,
   Ar as BaseCard,
   qe as BaseCollapsible,
-  je as BaseColorPicker,
+  Fe as BaseColorPicker,
   Pe as BaseCombobox,
   Ee as BaseContainer,
   ve as BaseDivider,
-  Fe as BaseFlex,
+  je as BaseFlex,
   gs as BaseFooter,
   ys as BaseGrid,
   Zt as BaseHeading,
@@ -6793,8 +6793,8 @@ export {
   ha as COMPONENT_REGISTRY,
   yt as Card,
   rn as Checkbox,
-  kn as Code,
-  Nn as Collapsible,
+  Nn as Code,
+  kn as Collapsible,
   hn as ColorPicker,
   mn as Combobox,
   fe as Container,
@@ -6814,6 +6814,7 @@ export {
   Tn as FOCUSABLE_ELEMENTS,
   cn as FileUpload,
   bn as Flex,
+  zs as FluentWorkflowBuilder,
   vs as Footer,
   Pn as Form,
   cr as FormError,
@@ -6830,10 +6831,10 @@ export {
   _n as Label,
   _i as LandingLayout,
   er as Link,
-  ke as Modal,
+  Ne as Modal,
   fn as MultiSelect,
   $r as Navbar,
-  jn as NetworkError,
+  Fn as NetworkError,
   Vn as NotFoundPage,
   tn as NumberInput,
   dn as OTPInput,
@@ -6864,18 +6865,18 @@ export {
   ri as StatCard,
   Dn as Stepper,
   an as Switch,
-  ji as TRANSITION_FAST,
-  Fi as TRANSITION_NORMAL,
+  Fi as TRANSITION_FAST,
+  ji as TRANSITION_NORMAL,
   Hi as TRANSITION_SLOW,
   Sn as Table,
   mi as Tabs,
   ie as Text,
   Ut as TextArea,
   Zr as TextInput,
-  Ns as ThemeProvider,
+  ks as ThemeProvider,
   En as Timeline,
-  Fn as TimeoutError,
-  ks as ToastProvider,
+  jn as TimeoutError,
+  Ns as ToastProvider,
   li as Tooltip,
   hr as UI_PREFIX,
   Bn as Video,
@@ -6890,19 +6891,20 @@ export {
   Qi as attachLinkChaining,
   Yi as attachTextChaining,
   Vt as breakpoints,
-  N as classNames,
+  k as classNames,
   Zi as cn,
   xa as colors,
   zi as compileEnglishToReact,
+  Ms as compileEnglishWorkflowToTypeScript,
   Mi as compileStructuredToReact,
   ga as configureCriationUI,
   Xi as cr,
-  ki as createApiClient,
+  Ni as createApiClient,
   Ie as createBadgeFromShorthand,
   es as createButtonDOMElement,
   yr as createButtonFromShorthand,
   wr as createCardFromShorthand,
-  F as createChainableProxy,
+  j as createChainableProxy,
   $e as createHeadingFromShorthand,
   Le as createImageFromShorthand,
   vr as createInputFromShorthand,
@@ -6928,7 +6930,7 @@ export {
   cs as extractEnglishSize,
   qa as formatCompact,
   Va as formatCurrency,
-  Fa as formatDate,
+  ja as formatDate,
   Ua as formatFileSize,
   qt as formatNumber,
   Ha as formatRelativeTime,
@@ -6956,13 +6958,14 @@ export {
   Ea as mediaQueryUp,
   J as memoryStore,
   Es as mountWebsite,
-  Nr as navigation,
+  kr as navigation,
   ct as parseBadgeShorthand,
   gr as parseButtonShorthand,
   xr as parseCardShorthand,
   Ht as parseCriationDSL,
   Kr as parseDSL,
   Jn as parseEnglishDescription,
+  Rs as parseEnglishWorkflow,
   st as parseHeadingShorthand,
   dt as parseImageShorthand,
   br as parseInputShorthand,
@@ -6973,17 +6976,18 @@ export {
   $s as renderWebsite,
   be as request,
   _a as shadows,
-  ka as sizing,
+  Na as sizing,
   wa as spacing,
   Xa as throttle,
   zn as trapFocus,
-  Na as typography,
+  ka as typography,
   As as ui,
   et as useAuth,
   Re as useClickOutside,
   Ra as useClipboard,
-  zs as useCrudWorkflow,
-  Ms as useDataQuery,
+  Ds as useCommerceWorkflow,
+  Bs as useCrudWorkflow,
+  Os as useDataQuery,
   La as useDebounce,
   Ma as useDisclosure,
   Wa as useEventListener,
@@ -6991,7 +6995,7 @@ export {
   hi as useForm,
   yi as useFormContext,
   Oa as useIntersectionObserver,
-  ja as useKeyPress,
+  Fa as useKeyPress,
   za as useLocalStorage,
   Ta as useMediaQuery,
   Ba as useOnlineStatus,
@@ -7006,5 +7010,6 @@ export {
   Ka as validateRequired,
   Ya as validateUrl,
   Ga as validators,
+  Ps as workflow,
   Sa as zIndex
 };
