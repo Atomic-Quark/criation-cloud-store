@@ -1,0 +1,34 @@
+export declare const lightTheme: {
+    name: string;
+    colors: {
+        bgPage: string;
+        bgSurface: string;
+        bgSurfaceHover: string;
+        bgSurfaceActive: string;
+        bgGlass: string;
+        borderSubtle: string;
+        borderMuted: string;
+        borderStrong: string;
+        textPrimary: string;
+        textSecondary: string;
+        textMuted: string;
+        textInverse: string;
+        primary: string;
+        primaryHover: string;
+        primaryActive: string;
+        primarySubtle: string;
+        primaryText: string;
+        secondary: string;
+        secondaryHover: string;
+        secondarySubtle: string;
+        success: string;
+        successSubtle: string;
+        warning: string;
+        warningSubtle: string;
+        danger: string;
+        dangerHover: string;
+        dangerSubtle: string;
+        focusRing: string;
+        shadowColor: string;
+    };
+};

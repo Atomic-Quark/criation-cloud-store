@@ -1,0 +1,1 @@
+"use client";"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("./createCrudWorkflow-CrL6zRnU.cjs");exports.useCrudWorkflow=e.useCrudWorkflow;exports.useDataQuery=e.useDataQuery;

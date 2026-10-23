@@ -1,0 +1,93 @@
+{
+  "name": "@criation/ui",
+  "version": "0.3.0-beta",
+  "description": "Criation UI - A modern, modular, and reusable UI foundation for rapid website creation",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./button": {
+      "types": "./dist/components/buttons/Button.d.ts",
+      "import": "./dist/button.js",
+      "require": "./dist/button.cjs"
+    },
+    "./input": {
+      "types": "./dist/components/inputs/Input.d.ts",
+      "import": "./dist/input.js",
+      "require": "./dist/input.cjs"
+    },
+    "./card": {
+      "types": "./dist/components/data-display/Card.d.ts",
+      "import": "./dist/card.js",
+      "require": "./dist/card.cjs"
+    },
+    "./workflows": {
+      "types": "./dist/workflows/index.d.ts",
+      "import": "./dist/workflows.js",
+      "require": "./dist/workflows.cjs"
+    },
+    "./core": {
+      "types": "./dist/core/builder.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./ui.css": "./dist/styles.css",
+    "./dist/styles.css": "./dist/styles.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "bin": {
+    "criation": "./bin/criation.js"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:lib": "tsc -b && vite build --config vite.config.lib.ts",
+    "pretest": "npm run build:lib",
+    "test": "node scripts/test-suite.js && node scripts/test-engine-and-compiler.js",
+    "test:engine": "node scripts/test-engine-and-compiler.js",
+    "test:browser": "node scripts/browser-behavior-tests.js",
+    "test:package": "node scripts/verify-consumer-package.js",
+    "test:all": "node scripts/test-suite.js && node scripts/test-engine-and-compiler.js && node scripts/browser-behavior-tests.js && node scripts/verify-consumer-package.js",
+    "benchmark": "node scripts/benchmark.js",
+    "cli": "node bin/criation.js",
+    "generate:pdf": "node scripts/generate-pdf.js",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "react",
+    "ui-library",
+    "design-system",
+    "components",
+    "criation-ui",
+    "typescript"
+  ],
+  "author": "Divyanshu Kumar <143479650+Atomic-Quark@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^1.16.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "marked": "^18.1.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vite-plugin-dts": "^4.5.0"
+  }
+}
