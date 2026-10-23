@@ -56,12 +56,12 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
       isOpen={isOpen}
       onClose={onClose}
       title={
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: "#6366f1", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <span style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: "#6366f1", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
             <UserIcon size={16} color="#ffffff" />
-          </div>
+          </span>
           <span>{mode === "login" ? "Sign In to Criation Cloud" : "Create Your Account"}</span>
-        </div>
+        </span>
       }
       size="sm"
     >

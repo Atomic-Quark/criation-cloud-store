@@ -9,6 +9,7 @@ export interface OrderReceiptModalProps {
   onClose: () => void;
   order: Order | null;
   transaction: PaymentTransaction | null;
+  isFreshPurchase?: boolean;
 }
 
 export function OrderReceiptModal({
@@ -16,9 +17,10 @@ export function OrderReceiptModal({
   onClose,
   order,
   transaction,
+  isFreshPurchase = false,
 }: OrderReceiptModalProps) {
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && isFreshPurchase) {
       try {
         confetti({
           particleCount: 80,
@@ -29,7 +31,7 @@ export function OrderReceiptModal({
         // Fallback if canvas is unavailable
       }
     }
-  }, [isOpen]);
+  }, [isOpen, isFreshPurchase]);
 
   if (!isOpen || !order) return null;
 
@@ -42,27 +44,27 @@ export function OrderReceiptModal({
       isOpen={isOpen}
       onClose={onClose}
       title={
-        <div style={{ display: "flex", alignItems: "center", gap: 10, color: "#10b981" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10, color: "#10b981" }}>
           <CheckCircle2 size={22} />
-          <span>Payment Completed Successfully</span>
-        </div>
+          <span>{isFreshPurchase ? "Payment Completed Successfully" : "Order Invoice & License Details"}</span>
+        </span>
       }
       size="md"
     >
       <div style={{ padding: "8px 0" }}>
         {/* Receipt Header Banner */}
         <div style={{
-          backgroundColor: "#064e3b",
-          border: "1px solid #059669",
+          backgroundColor: isFreshPurchase ? "#064e3b" : "#1e293b",
+          border: isFreshPurchase ? "1px solid #059669" : "1px solid #334155",
           borderRadius: 10,
           padding: "16px",
           textAlign: "center",
           marginBottom: 20
         }}>
-          <h3 style={{ margin: "0 0 4px 0", color: "#a7f3d0", fontSize: "1.1rem" }}>
-            Thank You for Your Order!
+          <h3 style={{ margin: "0 0 4px 0", color: isFreshPurchase ? "#a7f3d0" : "#f8fafc", fontSize: "1.1rem" }}>
+            {isFreshPurchase ? "Thank You for Your Order!" : "Cloud Database Verified Order"}
           </h3>
-          <p style={{ margin: 0, color: "#6ee7b7", fontSize: "0.85rem" }}>
+          <p style={{ margin: 0, color: isFreshPurchase ? "#6ee7b7" : "#94a3b8", fontSize: "0.85rem" }}>
             A confirmation receipt and license keys have been issued to <strong>{order.userEmail}</strong>.
           </p>
         </div>
@@ -99,9 +101,9 @@ export function OrderReceiptModal({
         </h4>
 
         <div style={{ marginBottom: 20 }}>
-          {order.items.map((item) => (
+          {(order.items || []).map((item, idx) => (
             <div
-              key={item.product.id}
+              key={item?.product?.id || `item_${idx}`}
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -112,18 +114,18 @@ export function OrderReceiptModal({
               }}
             >
               <div>
-                <span style={{ fontWeight: 600, color: "#f8fafc" }}>{item.product.name}</span>
-                <span style={{ color: "#94a3b8", marginLeft: 8 }}>× {item.quantity}</span>
+                <span style={{ fontWeight: 600, color: "#f8fafc" }}>{item?.product?.name || "Product License"}</span>
+                <span style={{ color: "#94a3b8", marginLeft: 8 }}>× {item?.quantity || 1}</span>
               </div>
               <span style={{ fontWeight: 700, color: "#38bdf8" }}>
-                ${(item.product.price * item.quantity).toFixed(2)}
+                ${(((item?.product?.price || 0) * (item?.quantity || 1))).toFixed(2)}
               </span>
             </div>
           ))}
 
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: "1.1rem", fontWeight: 800, marginTop: 14 }}>
             <span style={{ color: "#f8fafc" }}>Amount Paid (USD):</span>
-            <span style={{ color: "#10b981" }}>${order.total.toFixed(2)}</span>
+            <span style={{ color: "#10b981" }}>${(order.total || 0).toFixed(2)}</span>
           </div>
         </div>
 
@@ -140,7 +142,7 @@ export function OrderReceiptModal({
             variant="primary"
             onClick={onClose}
           >
-            Continue Shopping <ArrowRight size={16} style={{ marginLeft: 6 }} />
+            {isFreshPurchase ? "Continue Shopping" : "Close Invoice"} <ArrowRight size={16} style={{ marginLeft: 6 }} />
           </BaseButton>
         </div>
       </div>

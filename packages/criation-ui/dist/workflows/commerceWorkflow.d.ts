@@ -1,3 +1,4 @@
+import { default as React } from 'react';
 export interface WorkflowProduct {
     id: string;
     name: string;
@@ -27,6 +28,7 @@ export interface CommerceWorkflowConfig<P extends WorkflowProduct = WorkflowProd
     initialUser?: U | null;
     initialCart?: WorkflowCartItem<P>[];
     taxRate?: number;
+    autoOpenCartOnAdd?: boolean;
     loadOrders?: (userId: string) => O[] | Promise<O[]>;
     onLogoutService?: () => void | Promise<void>;
     onNavigate?: (view: "store" | "orders") => void;
@@ -127,6 +129,9 @@ export interface CommerceWorkflowResult<P extends WorkflowProduct = WorkflowProd
     closeReceipt: () => void;
     viewReceipt: (order: O, txn?: any) => void;
     navigateTo: (view: "store" | "orders") => void;
+    refreshOrders: () => Promise<void>;
+    setOrders: React.Dispatch<React.SetStateAction<O[]>>;
+    setCurrentUser: React.Dispatch<React.SetStateAction<U | null>>;
 }
 /**
  * useCommerceWorkflow:

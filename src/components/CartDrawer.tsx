@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BaseButton } from "@criation/ui";
 import { X, Trash2, Plus, Minus, ArrowRight, ShoppingCart } from "lucide-react";
 import type { CartItem } from "../database/types";
@@ -20,37 +20,68 @@ export function CartDrawer({
   onRemoveItem,
   onProceedToCheckout,
 }: CartDrawerProps) {
+  // Lock body scroll and register Escape key listener while open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
-  const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0);
   const tax = Number((subtotal * 0.08).toFixed(2));
   const total = Number((subtotal + tax).toFixed(2));
 
   return (
-    <div style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.75)",
-      backdropFilter: "blur(6px)",
-      zIndex: 200,
-      display: "flex",
-      justifyContent: "flex-end"
-    }}>
-      <div style={{
-        width: "100%",
-        maxWidth: 440,
-        backgroundColor: "#0f172a",
-        borderLeft: "1px solid #1e293b",
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Shopping Cart Drawer"
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        backdropFilter: "blur(6px)",
+        zIndex: 200,
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "24px 20px",
-        boxShadow: "-10px 0 30px rgba(0, 0, 0, 0.5)",
-        animation: "slideIn 0.25s ease"
-      }}>
+        justifyContent: "flex-end",
+        cursor: "pointer"
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: "100%",
+          maxWidth: 440,
+          backgroundColor: "#0f172a",
+          borderLeft: "1px solid #1e293b",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "24px 20px",
+          boxShadow: "-10px 0 30px rgba(0, 0, 0, 0.5)",
+          animation: "slideIn 0.25s ease",
+          cursor: "default"
+        }}
+      >
         {/* Header */}
         <div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #1e293b", paddingBottom: 16 }}>
@@ -63,7 +94,8 @@ export function CartDrawer({
             <button
               type="button"
               onClick={onClose}
-              style={{ background: "transparent", border: "none", color: "#94a3b8", cursor: "pointer" }}
+              aria-label="Close cart"
+              style={{ background: "transparent", border: "none", color: "#94a3b8", cursor: "pointer", padding: 4 }}
             >
               <X size={20} />
             </button>

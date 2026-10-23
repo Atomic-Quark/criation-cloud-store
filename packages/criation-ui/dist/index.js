@@ -12,7 +12,7 @@ import { Button as ht, BaseButton as Y } from "./button.js";
 import { Input as pe, BaseInput as gt } from "./input.js";
 import { Card as yt, BaseCard as Ar } from "./card.js";
 import { createPortal as Me } from "react-dom";
-import { F as zs, c as Ms, p as Rs, u as Ds, a as Bs, b as Os, w as Ps } from "./workflowBuilder-EbnoUfD4.js";
+import { F as zs, c as Ms, p as Rs, u as Ds, a as Bs, b as Os, w as Ps } from "./workflowBuilder-AnnYvHJL.js";
 /**
  * @license lucide-react v1.60.0 - ISC
  *
@@ -3913,7 +3913,7 @@ function Ne({
             ),
             children: [
               t && /* @__PURE__ */ m("div", { className: "cr-modal__header", children: [
-                /* @__PURE__ */ i("h3", { id: "cr-modal-title", className: "cr-modal__title", children: t }),
+                /* @__PURE__ */ i("div", { id: "cr-modal-title", className: "cr-modal__title", role: "heading", "aria-level": 3, children: t }),
                 /* @__PURE__ */ i(
                   "button",
                   {

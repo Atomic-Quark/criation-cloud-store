@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Modal, BaseButton, BaseInput } from "@criation/ui";
-import { CreditCard, Lock, ShieldCheck, Check, AlertCircle, RefreshCw, Zap } from "lucide-react";
+import { CreditCard, Lock, ShieldCheck, Check, AlertCircle, RefreshCw, Zap, ShoppingCart } from "lucide-react";
 import {
   paymentGateway,
   formatCardNumber,
@@ -28,23 +28,40 @@ export function CheckoutModal({
 }: CheckoutModalProps) {
   const [method, setMethod] = useState<PaymentMethodType>("card");
   const [cardNumber, setCardNumber] = useState("");
-  const [cardholderName, setCardholderName] = useState(currentUser.name || "");
+  const [cardholderName, setCardholderName] = useState(currentUser?.name || "");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [bankingStep, setBankingStep] = useState<"idle" | "authorizing" | "securing">("idle");
   const [error, setError] = useState<string | null>(null);
+  const stepTimerRef = useRef<any>(null);
+
+  // Sync cardholder name when currentUser updates
+  useEffect(() => {
+    if (currentUser?.name && !cardholderName) {
+      setCardholderName(currentUser.name);
+    }
+  }, [currentUser?.name]);
+
+  // Clean up timers on unmount
+  useEffect(() => {
+    return () => {
+      if (stepTimerRef.current) {
+        clearTimeout(stepTimerRef.current);
+      }
+    };
+  }, []);
 
   if (!isOpen) return null;
 
-  const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0);
   const tax = Number((subtotal * 0.08).toFixed(2));
   const total = Number((subtotal + tax).toFixed(2));
   const detectedBrand = detectCardBrand(cardNumber);
 
   const fillTestCard = () => {
     setCardNumber("4242 4242 4242 4242");
-    setCardholderName(currentUser.name || "Alex Morgan");
+    setCardholderName(currentUser?.name || "Alex Morgan");
     setExpiry("12/28");
     setCvc("888");
     setError(null);
@@ -52,13 +69,16 @@ export function CheckoutModal({
 
   const handlePay = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (items.length === 0) {
+      setError("Your cart is empty. Please add items before paying.");
+      return;
+    }
     setError(null);
     setIsProcessing(true);
     setBankingStep("authorizing");
 
     try {
-      // Step 1: Initial Gateway Handshake
-      setTimeout(() => {
+      stepTimerRef.current = setTimeout(() => {
         setBankingStep("securing");
       }, 900);
 
@@ -102,12 +122,12 @@ export function CheckoutModal({
         if (!isProcessing) onClose();
       }}
       title={
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: "#6366f1", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+          <span style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: "#6366f1", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
             <Lock size={15} color="#ffffff" />
-          </div>
+          </span>
           <span>Secure Checkout Gateway</span>
-        </div>
+        </span>
       }
       size="md"
     >
@@ -346,10 +366,31 @@ export function CheckoutModal({
         )}
 
         {method !== "card" && (
-          <div style={{ textAlign: "center", padding: "30px 10px" }}>
+          <div style={{ textAlign: "center", padding: "20px 10px" }}>
             <p style={{ color: "#94a3b8", fontSize: "0.9rem", marginBottom: 20 }}>
-              You will be redirected to {method === "paypal" ? "PayPal Express Checkout" : "Apple Pay"} to authorize your ${total.toFixed(2)} payment.
+              You will be redirected to {method === "paypal" ? "PayPal Express Checkout" : "Apple Pay / UPI"} to authorize your ${total.toFixed(2)} payment.
             </p>
+
+            {isProcessing && (
+              <div style={{
+                backgroundColor: "#1e1b4b",
+                border: "1px solid #6366f1",
+                padding: "12px",
+                borderRadius: 8,
+                marginBottom: 16,
+                textAlign: "center"
+              }}>
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 8, color: "#a5b4fc", fontSize: "0.85rem", fontWeight: 600 }}>
+                  <RefreshCw size={16} className="animate-spin" />
+                  <span>
+                    {method === "paypal"
+                      ? "Connecting to PayPal Secure Authorization Portal..."
+                      : "Authorizing via Apple Pay / UPI Gateway..."}
+                  </span>
+                </div>
+              </div>
+            )}
+
             <BaseButton
               variant="primary"
               size="lg"

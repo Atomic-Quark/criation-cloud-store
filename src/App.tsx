@@ -24,6 +24,8 @@ export function App() {
     }
   })();
 
+  const [isFreshPurchase, setIsFreshPurchase] = useState(false);
+
   /**
    * ⚡ Criation UI — Natural Language Workflow Engine
    * 
@@ -62,9 +64,13 @@ export function App() {
     closeReceipt,
     viewReceipt,
     navigateTo,
+    refreshOrders,
+    setOrders,
+    setCurrentUser,
   } = useCommerceWorkflow<Product, User, Order>({
     initialCart,
     initialUser: authService.getCurrentUser(),
+    autoOpenCartOnAdd: true,
     loadOrders: (userId) => cloudDb.getOrders(userId),
     onLogoutService: () => authService.logout(),
   });
@@ -73,6 +79,35 @@ export function App() {
   useEffect(() => {
     localStorage.setItem("criation_cloud_cart", JSON.stringify(cartItems));
   }, [cartItems]);
+
+  // Synchronize database updates across browser tabs
+  useEffect(() => {
+    const unsubscribe = cloudDb.onSync((type, data) => {
+      if (type === "SESSION_CHANGE") {
+        setCurrentUser(data);
+        if (data?.id) {
+          setOrders(cloudDb.getOrders(data.id));
+        } else {
+          setOrders([]);
+        }
+      } else if (type === "ORDER_CREATED" || type === "TRANSACTION_LOGGED") {
+        if (currentUser?.id) {
+          refreshOrders();
+        }
+      }
+    });
+    return unsubscribe;
+  }, [currentUser?.id, refreshOrders, setCurrentUser, setOrders]);
+
+  const onPaymentCompleted = async (result: any) => {
+    setIsFreshPurchase(true);
+    await handlePaymentSuccess(result);
+  };
+
+  const onHistoryReceiptView = (order: Order) => {
+    setIsFreshPurchase(false);
+    viewReceipt(order);
+  };
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#0b0f19", color: "#f8fafc" }}>
@@ -98,7 +133,7 @@ export function App() {
         ) : (
           <OrdersView
             orders={orders}
-            onViewReceipt={viewReceipt}
+            onViewReceipt={onHistoryReceiptView}
             onBrowseStore={() => navigateTo("store")}
           />
         )}
@@ -128,7 +163,7 @@ export function App() {
           onClose={closeCheckout}
           items={cartItems}
           currentUser={currentUser}
-          onPaymentSuccess={handlePaymentSuccess}
+          onPaymentSuccess={onPaymentCompleted}
         />
       )}
 
@@ -138,6 +173,7 @@ export function App() {
         onClose={closeReceipt}
         order={activeReceiptOrder}
         transaction={activeReceiptTxn}
+        isFreshPurchase={isFreshPurchase}
       />
 
       {/* Global Footer */}

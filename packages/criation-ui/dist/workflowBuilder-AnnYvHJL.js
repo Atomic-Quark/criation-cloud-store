@@ -1,195 +1,218 @@
 "use client";
-var oe = Object.defineProperty;
-var ae = (n, e, p) => e in n ? oe(n, e, { enumerable: !0, configurable: !0, writable: !0, value: p }) : n[e] = p;
-var Q = (n, e, p) => ae(n, typeof e != "symbol" ? e + "" : e, p);
-import { useState as i, useRef as q, useEffect as B, useCallback as s, useMemo as D } from "react";
-function ce(n, e = [], p = {}) {
-  const { enabled: f = !0, initialData: u, onSuccess: d, onError: c, retryCount: t = 1 } = p, [o, h] = i(u), [m, y] = i(null), [w, E] = i(f), S = q(!0), A = q(n);
-  A.current = n, B(() => (S.current = !0, () => {
-    S.current = !1;
+var ue = Object.defineProperty;
+var le = (c, e, p) => e in c ? ue(c, e, { enumerable: !0, configurable: !0, writable: !0, value: p }) : c[e] = p;
+var q = (c, e, p) => le(c, typeof e != "symbol" ? e + "" : e, p);
+import { useState as u, useRef as G, useEffect as B, useCallback as n, useMemo as b } from "react";
+function de(c, e = [], p = {}) {
+  const { enabled: C = !0, initialData: O, onSuccess: o, onError: i, retryCount: t = 1 } = p, [l, h] = u(O), [E, r] = u(null), [T, S] = u(C), f = G(!0), v = G(c);
+  v.current = c, B(() => (f.current = !0, () => {
+    f.current = !1;
   }), []);
-  const k = s(async () => {
-    E(!0), y(null);
-    let R = 0;
-    for (; R <= t; )
+  const U = n(async () => {
+    S(!0), r(null);
+    let w = 0;
+    for (; w <= t; )
       try {
-        const O = await A.current();
-        return S.current && (h(O), E(!1), d == null || d(O)), O;
-      } catch (O) {
-        if (R++, R > t) {
-          if (S.current) {
-            const _ = O instanceof Error ? O : new Error(String(O));
-            y(_), E(!1), c == null || c(_);
+        const I = await v.current();
+        return f.current && (h(I), S(!1), o == null || o(I)), I;
+      } catch (I) {
+        if (w++, w > t) {
+          if (f.current) {
+            const y = I instanceof Error ? I : new Error(String(I));
+            r(y), S(!1), i == null || i(y);
           }
           return;
         }
       }
-  }, [t, d, c]);
+  }, [t, o, i]);
   return B(() => {
-    f && k();
-  }, [f, ...e]), {
-    data: o,
-    error: m,
-    isLoading: w,
-    isError: m !== null,
-    isSuccess: o !== void 0 && m === null,
-    refetch: k
+    C && U();
+  }, [C, ...e]), {
+    data: l,
+    error: E,
+    isLoading: T,
+    isError: E !== null,
+    isSuccess: l !== void 0 && E === null,
+    refetch: U
   };
 }
-function de(n) {
-  const { fetchList: e, createItem: p, updateItem: f, deleteItem: u, initialItems: d = [] } = n, [c, t] = i(d), [o, h] = i(null), [m, y] = i(!1), [w, E] = i(!1), [S, A] = i(!1), { data: k, isLoading: R, error: O, refetch: _ } = ce(
+function Ce(c) {
+  const { fetchList: e, createItem: p, updateItem: C, deleteItem: O, initialItems: o = [] } = c, [i, t] = u(o), [l, h] = u(null), [E, r] = u(!1), [T, S] = u(!1), [f, v] = u(!1), { data: U, isLoading: w, error: I, refetch: y } = de(
     e,
     [],
     {
-      initialData: d,
-      onSuccess: (l) => {
-        t(l);
+      initialData: o,
+      onSuccess: (d) => {
+        t(d);
       }
     }
-  ), M = s(() => {
-    h(null), y(!0);
-  }, []), U = s((l) => {
-    h(l), E(!0);
-  }, []), N = s((l) => {
-    h(l), A(!0);
-  }, []), I = s(() => {
-    y(!1), E(!1), A(!1), h(null);
-  }, []), H = s(
-    async (l) => {
+  ), D = n(() => {
+    h(null), r(!0);
+  }, []), P = n((d) => {
+    h(d), S(!0);
+  }, []), M = n((d) => {
+    h(d), v(!0);
+  }, []), m = n(() => {
+    r(!1), S(!1), v(!1), h(null);
+  }, []), N = n(
+    async (d) => {
       if (!p) return;
-      const T = await p(l);
-      return t((C) => [T, ...C]), I(), T;
+      const A = await p(d);
+      return t((R) => [A, ...R]), m(), A;
     },
-    [p, I]
-  ), b = s(
-    async (l, T) => {
-      if (!f) return;
-      const C = await f(l, T);
+    [p, m]
+  ), W = n(
+    async (d, A) => {
+      if (!C) return;
+      const R = await C(d, A);
       return t(
-        (P) => P.map((W) => W.id === l ? { ...W, ...C } : W)
-      ), I(), C;
+        (x) => x.map((_) => _.id === d ? { ..._, ...R } : _)
+      ), m(), R;
     },
-    [f, I]
-  ), x = s(
-    async (l) => u ? (await u(l), t((T) => T.filter((C) => C.id !== l)), I(), !0) : !1,
-    [u, I]
+    [C, m]
+  ), H = n(
+    async (d) => O ? (await O(d), t((A) => A.filter((R) => R.id !== d)), m(), !0) : !1,
+    [O, m]
   );
   return {
-    items: k || c,
-    isLoading: R,
-    error: O,
-    activeItem: o,
-    isCreateOpen: m,
-    isEditOpen: w,
-    isDeleteOpen: S,
-    openCreate: M,
-    openEdit: U,
-    openDelete: N,
-    closeModals: I,
-    handleCreate: H,
-    handleUpdate: b,
-    handleDelete: x,
-    refresh: _
+    items: U || i,
+    isLoading: w,
+    error: I,
+    activeItem: l,
+    isCreateOpen: E,
+    isEditOpen: T,
+    isDeleteOpen: f,
+    openCreate: D,
+    openEdit: P,
+    openDelete: M,
+    closeModals: m,
+    handleCreate: N,
+    handleUpdate: W,
+    handleDelete: H,
+    refresh: y
   };
 }
-function he(n = {}) {
+function Oe(c = {}) {
   const {
     initialUser: e = null,
     initialCart: p = [],
-    taxRate: f = 0.08,
-    loadOrders: u,
-    onLogoutService: d,
-    onNavigate: c,
-    confirmPaymentWithBackend: t
-  } = n, [o, h] = i(p), [m, y] = i(e), [w, E] = i([]), [S, A] = i("store"), [k, R] = i(!1), [O, _] = i(!1), [M, U] = i(!1), [N, I] = i(!1), [H, b] = i(null), [x, l] = i(null), T = D(() => o.reduce((r, a) => r + a.quantity, 0), [o]), C = D(() => o.reduce((r, a) => r + a.product.price * a.quantity, 0), [o]), P = D(() => Math.round(C * f * 100) / 100, [C, f]), W = D(() => Math.round((C + P) * 100) / 100, [C, P]), G = s(() => R(!0), []), F = s(() => R(!1), []), K = s(() => _(!0), []), Y = s(() => _(!1), []), $ = s(() => U(!0), []), j = s(() => U(!1), []), z = s(() => {
-    I(!1), b(null), l(null);
-  }, []), V = s(
-    (r) => {
-      A(r), c && c(r);
+    taxRate: C = 0.08,
+    autoOpenCartOnAdd: O = !1,
+    loadOrders: o,
+    onLogoutService: i,
+    onNavigate: t,
+    confirmPaymentWithBackend: l
+  } = c, [h, E] = u(p), [r, T] = u(e), [S, f] = u([]), [v, U] = u("store");
+  B(() => {
+    let s = !0;
+    return r != null && r.id && o ? Promise.resolve(o(r.id)).then((a) => {
+      s && Array.isArray(a) && f(a);
+    }).catch(() => {
+    }) : r || f([]), () => {
+      s = !1;
+    };
+  }, [r == null ? void 0 : r.id, o]);
+  const w = n(async () => {
+    if (o && (r != null && r.id)) {
+      const s = await Promise.resolve(o(r.id));
+      Array.isArray(s) && f(s);
+    }
+  }, [o, r == null ? void 0 : r.id]), [I, y] = u(!1), [D, P] = u(!1), [M, m] = u(!1), [N, W] = u(!1), [H, d] = u(null), [A, R] = u(null), x = b(() => h.reduce((s, a) => s + a.quantity, 0), [h]), _ = b(() => h.reduce((s, a) => s + a.product.price * a.quantity, 0), [h]), V = b(() => Math.round(_ * C * 100) / 100, [_, C]), F = b(() => Math.round((_ + V) * 100) / 100, [_, V]), K = n(() => y(!0), []), Y = n(() => y(!1), []), $ = n(() => P(!0), []), j = n(() => P(!1), []), z = n(() => m(!0), []), J = n(() => m(!1), []), X = n(() => W(!0), []), Z = n(() => {
+    W(!1), d(null), R(null);
+  }, []), ee = n((s, a = null) => {
+    d(s), R(a), W(!0);
+  }, []), Q = n(
+    (s) => {
+      U(s), t && t(s);
     },
-    [c]
-  ), J = s((r, a = 1) => {
-    h((v) => v.find((g) => g.product.id === r.id) ? v.map(
-      (g) => g.product.id === r.id ? { ...g, quantity: g.quantity + a } : g
-    ) : [...v, { product: r, quantity: a }]);
-  }, []), X = s((r, a) => {
-    h((v) => v.map((L) => {
-      if (L.product.id === r) {
+    [t]
+  ), te = n((s, a = 1) => {
+    E((k) => k.find((g) => g.product.id === s.id) ? k.map(
+      (g) => g.product.id === s.id ? { ...g, quantity: g.quantity + a } : g
+    ) : [...k, { product: s, quantity: a }]), O && y(!0);
+  }, [O]), se = n((s, a) => {
+    E((k) => k.map((L) => {
+      if (L.product.id === s) {
         const g = L.quantity + a;
         return g > 0 ? { ...L, quantity: g } : null;
       }
       return L;
     }).filter(Boolean));
-  }, []), Z = s((r) => {
-    h((a) => a.filter((v) => v.product.id !== r));
-  }, []), ee = s(() => {
-    h([]);
-  }, []), te = s(() => {
-    R(!1), m ? U(!0) : _(!0);
-  }, [m]), se = s(
-    async (r) => {
-      if (y(r), _(!1), u) {
-        const a = await Promise.resolve(u(r.id));
-        E(a);
+  }, []), re = n((s) => {
+    E((a) => a.filter((k) => k.product.id !== s));
+  }, []), ne = n(() => {
+    E([]);
+  }, []), oe = n(() => {
+    y(!1), r ? m(!0) : P(!0);
+  }, [r]), ae = n(
+    async (s) => {
+      if (T(s), P(!1), o) {
+        const a = await Promise.resolve(o(s.id));
+        f(a);
       }
-      h((a) => (a.length > 0 && U(!0), a));
+      E((a) => (a.length > 0 && m(!0), a));
     },
-    [u]
-  ), re = s(async () => {
-    d && await Promise.resolve(d()), y(null), E([]), V("store");
-  }, [d, V]), ne = s(
-    async (r) => {
-      if (t && !await Promise.resolve(t(r)))
+    [o]
+  ), ce = n(async () => {
+    i && await Promise.resolve(i()), T(null), f([]), Q("store");
+  }, [i, Q]), ie = n(
+    async (s) => {
+      if (l && !await Promise.resolve(l(s)))
         throw new Error("Payment validation failed: provider could not confirm settlement.");
-      if (U(!1), h([]), r.order && (b(r.order), l(r.transaction || null), I(!0), u && m)) {
-        const a = await Promise.resolve(u(m.id));
-        E(a);
+      if (m(!1), E([]), s.order && (d(s.order), R(s.transaction || null), W(!0), o && r)) {
+        const a = await Promise.resolve(o(r.id));
+        f(a);
       }
     },
-    [t, u, m]
+    [l, o, r]
   );
   return {
-    cartItems: o,
-    currentUser: m,
-    orders: w,
-    currentView: S,
-    cartCount: T,
-    cartSubtotal: C,
-    cartTax: P,
-    cartTotal: W,
-    isCartOpen: k,
-    isAuthOpen: O,
+    cartItems: h,
+    currentUser: r,
+    orders: S,
+    currentView: v,
+    cartCount: x,
+    cartSubtotal: _,
+    cartTax: V,
+    cartTotal: F,
+    isCartOpen: I,
+    isAuthOpen: D,
     isCheckoutOpen: M,
     isReceiptOpen: N,
     activeReceiptOrder: H,
-    activeReceiptTxn: x,
-    addToCart: J,
-    updateQuantity: X,
-    removeFromCart: Z,
-    clearCart: ee,
-    proceedToCheckout: te,
-    handleAuthSuccess: se,
-    handleLogout: re,
-    handlePaymentSuccess: ne,
-    openCart: G,
-    closeCart: F,
-    openAuth: K,
-    closeAuth: Y,
-    openCheckout: $,
-    closeCheckout: j,
-    closeReceipt: z,
-    navigateTo: V
+    activeReceiptTxn: A,
+    addToCart: te,
+    updateQuantity: se,
+    removeFromCart: re,
+    clearCart: ne,
+    proceedToCheckout: oe,
+    handleAuthSuccess: ae,
+    handleLogout: ce,
+    handlePaymentSuccess: ie,
+    openCart: K,
+    closeCart: Y,
+    openAuth: $,
+    closeAuth: j,
+    openCheckout: z,
+    closeCheckout: J,
+    openReceipt: X,
+    closeReceipt: Z,
+    viewReceipt: ee,
+    navigateTo: Q,
+    refreshOrders: w,
+    setOrders: f,
+    setCurrentUser: T
   };
 }
-function ie(n) {
-  const e = n.trim(), p = [], f = e.split(/(?=When\s+(?:the\s+user|authentication|payment|an?\s+order))/i).map((u) => u.trim()).filter(Boolean);
-  for (const u of f) {
-    const d = u.split(`
+function pe(c) {
+  const e = c.trim(), p = [], C = e.split(/(?=When\s+(?:the\s+user|authentication|payment|an?\s+order))/i).map((O) => O.trim()).filter(Boolean);
+  for (const O of C) {
+    const o = O.split(`
 `).map((h) => h.trim()).filter(Boolean);
-    if (d.length === 0) continue;
-    const c = d[0].replace(/:$/, "").trim(), t = [];
-    let o = "CUSTOM";
-    /changes?\s+(?:a\s+)?product'?s?\s+quantity/i.test(c) ? (o = "QUANTITY_CHANGE", t.push({
+    if (o.length === 0) continue;
+    const i = o[0].replace(/:$/, "").trim(), t = [];
+    let l = "CUSTOM";
+    /changes?\s+(?:a\s+)?product'?s?\s+quantity/i.test(i) ? (l = "QUANTITY_CHANGE", t.push({
       action: "UPDATE_CART_ITEM",
       target: "cartItem"
     }), t.push({
@@ -197,16 +220,16 @@ function ie(n) {
       target: "cartItem",
       condition: { field: "quantity", operator: "is_zero" },
       fallbackAction: "KEEP_CART_ITEM"
-    })) : /removes?\s+(?:a\s+)?product\s+(?:from\s+(?:the\s+)?cart)?/i.test(c) ? (o = "REMOVE_ITEM", t.push({
+    })) : /removes?\s+(?:a\s+)?product\s+(?:from\s+(?:the\s+)?cart)?/i.test(i) ? (l = "REMOVE_ITEM", t.push({
       action: "REMOVE_MATCHING_ITEM",
       target: "cartItem"
-    })) : /proceeds?\s+to\s+checkout/i.test(c) ? (o = "PROCEED_CHECKOUT", t.push({
+    })) : /proceeds?\s+to\s+checkout/i.test(i) ? (l = "PROCEED_CHECKOUT", t.push({
       action: "CLOSE_CART_DRAWER"
     }), t.push({
       action: "OPEN_AUTH_WINDOW",
       condition: { field: "currentUser", operator: "is_null" },
       fallbackAction: "OPEN_CHECKOUT_WINDOW"
-    })) : /authentication\s+succeeds?|login\s+succeeds?/i.test(c) ? (o = "AUTH_SUCCESS", t.push({
+    })) : /authentication\s+succeeds?|login\s+succeeds?/i.test(i) ? (l = "AUTH_SUCCESS", t.push({
       action: "SET_CURRENT_USER",
       target: "user"
     }), t.push({
@@ -214,7 +237,7 @@ function ie(n) {
     }), t.push({
       action: "OPEN_CHECKOUT_WINDOW",
       condition: { field: "cartItems", operator: "has_items" }
-    })) : /logs?\s+out/i.test(c) ? (o = "LOGOUT", t.push({
+    })) : /logs?\s+out/i.test(i) ? (l = "LOGOUT", t.push({
       action: "LOGOUT_AUTH_SERVICE"
     }), t.push({
       action: "CLEAR_CURRENT_USER"
@@ -223,7 +246,7 @@ function ie(n) {
     }), t.push({
       action: "NAVIGATE_TO",
       params: { route: "store" }
-    })) : /payment\s+succeeds?|order\s+is\s+placed/i.test(c) && (o = "PAYMENT_SUCCESS", t.push({
+    })) : /payment\s+succeeds?|order\s+is\s+placed/i.test(i) && (l = "PAYMENT_SUCCESS", t.push({
       action: "CLOSE_CHECKOUT_WINDOW"
     }), t.push({
       action: "CLEAR_CART"
@@ -233,10 +256,10 @@ function ie(n) {
     }), t.push({
       action: "REFRESH_ORDER_HISTORY"
     })), p.push({
-      id: `rule-${o.toLowerCase()}`,
-      trigger: o,
-      englishTrigger: c,
-      description: d.slice(1).join(" "),
+      id: `rule-${l.toLowerCase()}`,
+      trigger: l,
+      englishTrigger: i,
+      description: o.slice(1).join(" "),
       steps: t
     });
   }
@@ -247,10 +270,10 @@ function ie(n) {
     rawEnglish: e
   };
 }
-function fe(n) {
+function Ee(c) {
   return `/**
  * Generated by Criation UI — Natural Language Workflow Compiler
- * Source: ${ie(n).rules.length} plain-English behavior rules
+ * Source: ${pe(c).rules.length} plain-English behavior rules
  */
 
 import { useState, useCallback, useMemo } from "react";
@@ -366,10 +389,10 @@ export function useStoreWorkflow(services: {
 }
 `;
 }
-class ue {
+class he {
   constructor(e) {
-    Q(this, "_name");
-    Q(this, "_steps", []);
+    q(this, "_name");
+    q(this, "_steps", []);
     this._name = e;
   }
   /**
@@ -440,15 +463,15 @@ class ue {
     };
   }
 }
-function me(n = "ApplicationWorkflow") {
-  return new ue(n);
+function Ie(c = "ApplicationWorkflow") {
+  return new he(c);
 }
 export {
-  ue as F,
-  de as a,
-  ce as b,
-  fe as c,
-  ie as p,
-  he as u,
-  me as w
+  he as F,
+  Ce as a,
+  de as b,
+  Ee as c,
+  pe as p,
+  Oe as u,
+  Ie as w
 };

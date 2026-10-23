@@ -86,8 +86,12 @@ export function ProductCard({ product, onAddToCart, isInCart }: ProductCardProps
         fullWidth
         onClick={() => onAddToCart(product)}
       >
-        <Plus size={16} style={{ marginRight: 6 }} />
-        {isInCart ? "Add Another" : "Add to Cart"}
+        {isInCart ? (
+          <CheckCircle size={16} color="#34d399" style={{ marginRight: 6 }} />
+        ) : (
+          <Plus size={16} style={{ marginRight: 6 }} />
+        )}
+        {isInCart ? "In Cart • Add Another" : "Add to Cart"}
       </BaseButton>
     </div>
   );

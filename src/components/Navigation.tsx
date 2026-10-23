@@ -43,8 +43,17 @@ export function Navigation({
       }}>
         {/* Brand Logo & Name */}
         <div
+          role="button"
+          tabIndex={0}
+          aria-label="Criation Cloud Storefront"
           onClick={onViewStore}
-          style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onViewStore();
+            }
+          }}
+          style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", outline: "none" }}
         >
           <div style={{
             width: 38,

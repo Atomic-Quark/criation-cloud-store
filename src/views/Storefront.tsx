@@ -75,6 +75,20 @@ export function Storefront({
             Experience serverless applications built with Criation UI. Integrated with a live free cloud database, Stripe-style checkout, and accessible on every device.
           </p>
 
+          {/* Hero CTAs */}
+          <div style={{ display: "flex", justifyContent: "center", gap: 14, margin: "24px 0 32px 0", flexWrap: "wrap" }}>
+            <BaseButton
+              variant="primary"
+              size="lg"
+              onClick={() => {
+                onExploreFeatures();
+                document.getElementById("products-catalog")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              <Zap size={18} style={{ marginRight: 8 }} /> Explore Cloud Catalog
+            </BaseButton>
+          </div>
+
           {/* Quick Metrics Bar */}
           <div style={{
             display: "flex",
@@ -107,7 +121,7 @@ export function Storefront({
       </section>
 
       {/* Main Catalog Section */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 20px 80px 20px" }}>
+      <section id="products-catalog" style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 20px 80px 20px" }}>
         {/* Category Filter Pills */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14, marginBottom: 32 }}>
           <div>

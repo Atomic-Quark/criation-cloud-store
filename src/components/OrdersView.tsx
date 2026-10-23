@@ -71,15 +71,15 @@ export function OrdersView({ orders, onViewReceipt, onBrowseStore }: OrdersViewP
                 </div>
 
                 <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#f8fafc", marginBottom: 6 }}>
-                  {order.items.map((i) => `${i.product.name} (×${i.quantity})`).join(", ")}
+                  {(order.items || []).map((i) => `${i?.product?.name || "Product License"} (×${i?.quantity || 1})`).join(", ") || "No items listed"}
                 </div>
 
                 <div style={{ display: "flex", gap: 18, color: "#64748b", fontSize: "0.82rem" }}>
                   <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                    <Calendar size={13} /> {new Date(order.createdAt).toLocaleDateString()}
+                    <Calendar size={13} /> {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "Recent"}
                   </span>
                   <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                    <CreditCard size={13} /> {order.paymentMethod}
+                    <CreditCard size={13} /> {order.paymentMethod || "Credit Card"}
                   </span>
                 </div>
               </div>
@@ -88,7 +88,7 @@ export function OrdersView({ orders, onViewReceipt, onBrowseStore }: OrdersViewP
                 <div style={{ textAlign: "right" }}>
                   <div style={{ fontSize: "0.78rem", color: "#94a3b8" }}>Total Paid</div>
                   <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#10b981" }}>
-                    ${order.total.toFixed(2)}
+                    ${(order.total || 0).toFixed(2)}
                   </div>
                 </div>
 

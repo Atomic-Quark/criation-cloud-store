@@ -8,6 +8,7 @@ class UniversalCloudDatabase {
   private transactionsKey = "criation_cloud_txns_v1";
   private sessionKey = "criation_cloud_session_v1";
   private broadcast: BroadcastChannel | null = null;
+  private memStorage: Record<string, string> = {};
 
   constructor() {
     if (typeof window !== "undefined" && "BroadcastChannel" in window) {
@@ -20,14 +21,46 @@ class UniversalCloudDatabase {
     this.seedDefaults();
   }
 
-  private seedDefaults() {
-    if (typeof window === "undefined") return;
+  private getItem(key: string): string | null {
+    try {
+      if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+        return localStorage.getItem(key);
+      }
+    } catch {
+      // Storage restricted / private browsing quota
+    }
+    return this.memStorage[key] || null;
+  }
 
-    if (!localStorage.getItem(this.productsKey)) {
-      localStorage.setItem(this.productsKey, JSON.stringify(initialProducts));
+  private setItem(key: string, value: string) {
+    try {
+      if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+        localStorage.setItem(key, value);
+        return;
+      }
+    } catch {
+      // Storage restricted / private browsing quota
+    }
+    this.memStorage[key] = value;
+  }
+
+  private removeItem(key: string) {
+    try {
+      if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+        localStorage.removeItem(key);
+      }
+    } catch {
+      // Storage restricted
+    }
+    delete this.memStorage[key];
+  }
+
+  private seedDefaults() {
+    if (!this.getItem(this.productsKey)) {
+      this.setItem(this.productsKey, JSON.stringify(initialProducts));
     }
 
-    if (!localStorage.getItem(this.usersKey)) {
+    if (!this.getItem(this.usersKey)) {
       const demoUser: User = {
         id: "usr_demo_101",
         name: "Dev Member",
@@ -35,20 +68,24 @@ class UniversalCloudDatabase {
         role: "customer",
         createdAt: new Date().toISOString(),
       };
-      localStorage.setItem(this.usersKey, JSON.stringify([demoUser]));
+      this.setItem(this.usersKey, JSON.stringify([demoUser]));
     }
   }
 
   private notify(type: string, data?: any) {
     if (this.broadcast) {
-      this.broadcast.postMessage({ type, data, timestamp: Date.now() });
+      try {
+        this.broadcast.postMessage({ type, data, timestamp: Date.now() });
+      } catch {
+        // Ignore message broadcasting errors in detached contexts
+      }
     }
   }
 
   // USERS
   getUsers(): User[] {
     try {
-      const raw = localStorage.getItem(this.usersKey);
+      const raw = this.getItem(this.usersKey);
       return raw ? JSON.parse(raw) : [];
     } catch {
       return [];
@@ -57,7 +94,9 @@ class UniversalCloudDatabase {
 
   saveUser(user: User): User {
     const users = this.getUsers();
-    const existingIndex = users.findIndex((u) => u.id === user.id || u.email.toLowerCase() === user.email.toLowerCase());
+    const existingIndex = users.findIndex(
+      (u) => u.id === user.id || u.email.toLowerCase() === user.email.toLowerCase()
+    );
 
     if (existingIndex !== -1) {
       users[existingIndex] = { ...users[existingIndex], ...user };
@@ -65,7 +104,7 @@ class UniversalCloudDatabase {
       users.unshift(user);
     }
 
-    localStorage.setItem(this.usersKey, JSON.stringify(users));
+    this.setItem(this.usersKey, JSON.stringify(users));
     this.notify("USER_SAVED", user);
     return user;
   }
@@ -78,7 +117,7 @@ class UniversalCloudDatabase {
   // ACTIVE SESSION
   getCurrentUser(): User | null {
     try {
-      const raw = localStorage.getItem(this.sessionKey);
+      const raw = this.getItem(this.sessionKey);
       return raw ? JSON.parse(raw) : null;
     } catch {
       return null;
@@ -87,9 +126,9 @@ class UniversalCloudDatabase {
 
   setCurrentUser(user: User | null) {
     if (user) {
-      localStorage.setItem(this.sessionKey, JSON.stringify(user));
+      this.setItem(this.sessionKey, JSON.stringify(user));
     } else {
-      localStorage.removeItem(this.sessionKey);
+      this.removeItem(this.sessionKey);
     }
     this.notify("SESSION_CHANGE", user);
   }
@@ -97,7 +136,7 @@ class UniversalCloudDatabase {
   // PRODUCTS
   getProducts(): Product[] {
     try {
-      const raw = localStorage.getItem(this.productsKey);
+      const raw = this.getItem(this.productsKey);
       return raw ? JSON.parse(raw) : initialProducts;
     } catch {
       return initialProducts;
@@ -111,7 +150,7 @@ class UniversalCloudDatabase {
   // ORDERS
   getOrders(userId?: string): Order[] {
     try {
-      const raw = localStorage.getItem(this.ordersKey);
+      const raw = this.getItem(this.ordersKey);
       const all: Order[] = raw ? JSON.parse(raw) : [];
       if (userId) {
         return all.filter((o) => o.userId === userId);
@@ -125,7 +164,7 @@ class UniversalCloudDatabase {
   createOrder(order: Order): Order {
     const orders = this.getOrders();
     orders.unshift(order);
-    localStorage.setItem(this.ordersKey, JSON.stringify(orders));
+    this.setItem(this.ordersKey, JSON.stringify(orders));
     this.notify("ORDER_CREATED", order);
     return order;
   }
@@ -133,10 +172,9 @@ class UniversalCloudDatabase {
   // TRANSACTIONS
   createTransaction(txn: PaymentTransaction): PaymentTransaction {
     try {
-      const raw = localStorage.getItem(this.transactionsKey);
-      const all: PaymentTransaction[] = raw ? JSON.parse(raw) : [];
+      const all: PaymentTransaction[] = this.getTransactions();
       all.unshift(txn);
-      localStorage.setItem(this.transactionsKey, JSON.stringify(all));
+      this.setItem(this.transactionsKey, JSON.stringify(all));
       this.notify("TRANSACTION_LOGGED", txn);
       return txn;
     } catch {
@@ -146,7 +184,7 @@ class UniversalCloudDatabase {
 
   getTransactions(userId?: string): PaymentTransaction[] {
     try {
-      const raw = localStorage.getItem(this.transactionsKey);
+      const raw = this.getItem(this.transactionsKey);
       const all: PaymentTransaction[] = raw ? JSON.parse(raw) : [];
       if (userId) {
         return all.filter((t) => t.userId === userId);
