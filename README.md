@@ -1,5 +1,12 @@
 # ⚡ Criation Cloud Store
 
+[![Deploy to GitHub Pages](https://github.com/Atomic-Quark/criation-cloud-store/actions/workflows/deploy.yml/badge.svg)](https://github.com/Atomic-Quark/criation-cloud-store/actions/workflows/deploy.yml)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online%20Now-success?style=flat&logo=firefox)](https://atomic-quark.github.io/criation-cloud-store/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> 🌐 **Live Website Online Now**: **[https://atomic-quark.github.io/criation-cloud-store/](https://atomic-quark.github.io/criation-cloud-store/)**  
+> Accessible immediately on any smartphone, tablet, laptop, or desktop browser worldwide without local servers!
+
 A complete, full-featured **Cloud SaaS & Digital Marketplace Application** built with the **Criation UI** component foundation and English-sentence architecture.
 
 Features a **live free cloud database**, a **Stripe-style payment gateway with 3D Secure verification**, **user authentication**, **order invoicing**, and **cross-device responsiveness**.
